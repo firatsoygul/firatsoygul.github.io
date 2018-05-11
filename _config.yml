@@ -15,14 +15,14 @@
 minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
 # Site Settings
-locale                   : "en-US"
-title                    : "Site Title"
+locale                   : "tr-TR"
+title                    : "firat s."
 title_separator          : "-"
-name                     : "Your Name"
-description              : "An amazing website."
-url                      : # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+name                     : "Fırat SOYGÜL"
+description              : "Blog."
+url                      : "https://firatsoygul.github.io/"
 baseurl                  : # the subpath of your site, e.g. "/blog"
-repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
+repository               : "firatsoygul/firatsoygul.github.io"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 200
@@ -98,10 +98,10 @@ analytics:
 
 # Site Author
 author:
-  name             : "Your Name"
+  name             : "Fırat SOYGÜL"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "I am an amazing person."
-  location         : "Somewhere"
+  bio              : ""
+  location         : "izmir"
   email            :
   uri              :
   home             : # null (default), "absolute or relative url to link to author home"
@@ -111,7 +111,7 @@ author:
   flickr           :
   facebook         :
   foursquare       :
-  github           :
+  github           :"firatsoygul"
   gitlab           :
   google_plus      :
   keybase          :
@@ -123,7 +123,7 @@ author:
   stackoverflow    : # "123456/username" (the last part of your profile url, e.g. https://stackoverflow.com/users/123456/username)
   steam            : # "steamId" (the last part of your profile url, e.g. https://steamcommunity.com/id/steamId/)
   tumblr           :
-  twitter          :
+  twitter          :"firatsoygul"
   vine             :
   weibo            :
   xing             :
