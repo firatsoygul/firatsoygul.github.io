@@ -4,7 +4,7 @@ permalink: /article/linux-on-tanimli-kabuk-degistirme/
 excerpt: "Linux işletim sisteminde ön tanımlı olarak yüklenen kabuk uygulaması nasıl değiştirilir?"
 date: 2018-05-25
 last_modified_at: 2018-05-25T15:58:49-04:00
-classes: wide
+
 categories: 
   - Makale
 tags:
@@ -16,6 +16,7 @@ tags:
   - usermod
 header:
   teaser: "unsplash-gallery-image-2-th.jpg"
+toc_sticky: true
 ---
 
 Linux'ta bir kullanıcı oluşturulduğunda, o kullanıcıya bir kabuk tanımlanır. Sistem yöneticisi, kullanıcı için varsayılan bir kabuk belirlemiş de olabilir. Kullanıcı daha sonra, kendisine tanımlanmış ön tanımlı kabuğunu geçersiz kılarak başka bir kabuk çalıştırmayı seçebilir.
@@ -211,7 +212,7 @@ setenv SHELL /bin/bash
 exec /bin/bash --login
 ```
 
-Genellikle çoğu kabuk `~/.login` veya `~/.profile` dosyalarını okuduğu için, bu dosyaları da kullanabilirsiniz. Ancak içine ekleyeceğiniz komutlar, ön tanımlı kabuğunuzun anladığı dilde olmalı. Ayrıca yeni yürütülecek kabuk da, başlatıldığında kendi yapılandırma dosyalarını okuyacağı için, artık bu dosyaları kişiselleştirmeniz ve yapılandırmanız gerekecektir.
+Genellikle çoğu kabuk `~/.login` veya `~/.profile` dosyalarını okuduğu için, bu dosyaları da kullanabilirsiniz. Ancak içine ekleyeceğiniz komutlar, ön tanımlı kabuğunuzun anladığı dilde olmalı. Ayrıca yeni yürütülecek kabuk da, başlatıldığında kendi yapılandırma dosyalarını okuyacağı için, artık bu dosyaları da kişiselleştirmeniz ve yapılandırmanız gerekmektedir.
 
 Düzenlediğiniz yapılandırma dosyalarını etkinleştirmek için tekrar yorumlamanız gerekir. Bu işlemi `source` komutuyla yapabilirsiniz.
 
