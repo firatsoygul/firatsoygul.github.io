@@ -15,11 +15,13 @@
   padding: 1em;
   color: $dark-gray;
   font-family: $global-font-family;
-  font-size: $type-size-6 !important;
+  font-size: $type-size-5b !important;
   text-indent: initial; /* override*/
   background-color: mix(#fff, $notice-color, 90%);
   border-radius: $border-radius;
   box-shadow: 0 1px 1px rgba($notice-color, 0.25);
+  border-width: 0 0 0 5px;
+  border-style: solid;
 
   h4 {
     margin-top: 0 !important; /* override*/
@@ -33,6 +35,8 @@
   }
 
   p {
+    font-size: 1em !important;
+
     &:last-child {
       margin-bottom: 0 !important; /* override*/
     }
@@ -56,9 +60,25 @@
     background-color: mix(#fff, $notice-color, 95%)
   }
 
-  ul {
+  ul, ol {
+    list-style: none;
+
     &:last-child {
       margin-bottom: 0; /* override*/
+    }
+  }
+
+  ul, ol {
+    li {
+      font-size: $type-size-5 !important;
+    }
+    li:before {
+      content: "\2022";
+      font-size: $type-size-5;
+      margin-right: 1em;
+      margin-left: -22px;
+      top: 0em;
+      position: relative;
     }
   }
 }
@@ -67,34 +87,101 @@
 
 .notice {
   @include notice($light-gray);
+  background: rgba(182, 193, 202, 0.4);
+  border-color: #58585881;
+  color: #585858b8;
+
+  a {
+    color: #7a8288;
+
+    &:hover {
+      color:#b0b3b6;
+    }
+  }
+
+  ul, ol {
+    li:before {
+      color: #58585881;
+    }
+  }
 }
 
 /* Primary notice */
 
 .notice--primary {
   @include notice($primary-color);
+  border-width: 0px;
+  /*border-color: #3f87a6;*/
 }
 
 /* Info notice */
 
 .notice--info {
   @include notice($info-color);
+  background: #e4f0f5;
+  border-color: #3f87a6;
+  color: #4e7282;
+
+  strong, h1, h2, h3, h4, h5, h6 {
+    color: #3f87a6;
+  }
+
+  ul, ol {
+    li:before {
+      color: #3f87a6;
+    }
+  }
 }
 
 /* Warning notice */
 
 .notice--warning {
   @include notice($warning-color);
+  background: #fff3d4;
+  border-color: #f6b73c;
+  color: #ab7711;
+
+  strong, h1, h2, h3, h4, h5, h6 {
+    color: #ca8808;
+  }
+
+  ul, ol {
+    li:before {
+      color: #e29807;
+    }
+  }
 }
 
 /* Success notice */
 
 .notice--success {
   @include notice($success-color);
+  background: #dcffe4;
+  border-color: #288a3f;
+  color: #317541;
+
+  a {
+    color: #4b8c4b;
+  }
+
+  ul, ol {
+    li:before {
+      color: #288a3f;
+    }
+  }
 }
 
 /* Danger notice */
 
 .notice--danger {
   @include notice($danger-color);
+  background: #ffe7e8;
+  border-color: #e66465;
+  color: #bb595a;;
+
+  ul, ol {
+    li:before {
+      color: #e66465;
+    }
+  }
 }

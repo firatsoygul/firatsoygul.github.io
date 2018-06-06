@@ -1,12 +1,89 @@
+# example navigation
+foo:
+  - title: "Parent Link 1"
+    url: /parent-1-page-url/
+    children:
+      - title: "Child Link 1"
+        url: /child-1-page-url/
+      - title: "Child Link 2"
+        url: /child-2-page-url/
+  - title: "Parent Link 2"
+    url: /parent-2-page-url/
+    children:
+      - title: "Child Link 1"
+        url: /child-1-page-url/
+      - title: "Child Link 2"
+        url: /child-2-page-url/
+      - title: "Child Link 3"
+        url: /child-3-page-url/
+
+
 # main links
 main:
-  - title: "Quick-Start Guide"
-    url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
-  # - title: "About"
-  #   url: https://mmistakes.github.io/minimal-mistakes/about/
-  # - title: "Sample Posts"
-  #   url: /year-archive/
-  # - title: "Sample Collections"
-  #   url: /collection-archive/
-  # - title: "Sitemap"
-  #   url: /sitemap/
+  - title: "Nasıl Yapıldı?"
+    url: /how-to/
+  - title: "Makale"
+    url: /article/
+  - title: "Blog"
+    url: /blog/
+  - title: "Çalışma"
+    url: /projects/
+  #- title: "Sample Posts"
+  #  url: /year-archive/
+  #- title: "Sample Collections"
+  #  url: /collection-archive/
+  #- title: "Sitemap"
+  #  url: /sitemap/
+
+# slack-webhook sidebar
+slack-webhook:
+  - title: Başlangıç
+    children:
+      - title: "Açıklama"
+        url: /how-to/slack-webhook/baslangic/
+  - title: SLACK INCOMING WEBHOOKS
+    children:
+      - title: "Webhook Nedir?"
+        url: /how-to/slack-webhook/incoming-webhook-nedir/
+      - title: "Entegrasyon Oluşturma"
+        url: /how-to/slack-webhook/webhook-entegrasyonu-olusturma/
+      - title: "Ön Tanımlı Parametreler"
+        url: /how-to/slack-webhook/webhook-parametreler/
+      - title: "Mesaj Yapısı"
+        url: /how-to/slack-webhook/slack-mesaj-yapisi/
+  - title: CURL
+    children:
+      - title: "Curl Kurulumu ve Kullanımı"
+        url: /how-to/slack-webhook/curl-kurulum-kullanim/
+      - title: "Curl ile POST"
+        url: /how-to/slack-webhook/curl-post/
+  - title: Komut Satırı
+    children:
+      - title: "Komut Satırından Mesaj Gönderme"
+        url: /how-to/slack-webhook/komut-satirindan-mesaj-gonderme/
+  - title: Kabuk Programlama
+    children:
+      - title: "Kabuk Betiği Oluşturma "
+        url: /how-to/slack-webhook/kabuk-programlama-nedir/
+      - title: "Parametre İle Veri Girişi"
+        url: /how-to/slack-webhook/parametre-ile-veri-girisi/
+      - title: "getopts Fonksiyonu"
+        url: /docs/stylesheets/
+      - title: "help Fonksiyonu"
+        url: /docs/stylesheets/
+      - title: "Curl Dahil Etme"
+        url: /docs/stylesheets/
+      - title: "Mesaj Gönderme"
+        url: /docs/stylesheets/
+  - title: Kabuk Programlama ile YAD GUI
+    children:
+      - title: "Açıklama"
+        url: /docs/stylesheets/
+      - title: "YAD GUI Script"
+        url: /docs/stylesheets/
+      - title: "YAD Dahil Etme"
+        url: /docs/stylesheets/
+      - title: "Curl Dahil Etme"
+        url: /docs/stylesheets/
+      - title: "Mesaj Gönderme"
+        url: /docs/stylesheets/
