@@ -235,7 +235,6 @@ defaults:
       author_profile: false
       share: true
       comments: true
-      read_time: true
       breadcrumbs: true
       sidebar:
         nav: "slack-webhook"

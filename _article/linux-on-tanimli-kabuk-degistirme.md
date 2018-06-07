@@ -4,7 +4,6 @@ permalink: /article/linux-on-tanimli-kabuk-degistirme/
 excerpt: "Linux işletim sisteminde ön tanımlı olarak yüklenen kabuk uygulaması nasıl değiştirilir?"
 date: 2018-05-25
 last_modified_at: 2018-05-25T15:58:49-04:00
-
 categories: 
   - Makale
 tags:
@@ -16,6 +15,7 @@ tags:
   - usermod
 header:
   teaser: "unsplash-gallery-image-2-th.jpg"
+toc: true
 toc_sticky: true
 ---
 
@@ -32,25 +32,33 @@ Kullanıcı kabuğu değiştirmeden önce, mevcut kabuğun ne olduğunu ve deği
 
 ## MEVCUT KABUĞU ÖĞRENME
 
-Sisteminizde ön tanımlı olarak belirlenmiş kabuğu `$SHELL` sistem değişkenine bakarak öğrenebilirsiniz.
+Linux sistemlerde sıkça kullanılan bazı değerler sistem değişkeni olarak adlandırılan yapılarda barındırılır. Ön tanımlı bir çok değer, sistem açılışında bu değişkenlere aktarılır ve sistemin çalıştığı süre içinde buraya başvuran herhangi bir işlem tarafından kullanılabilir. İhtiyacınız olan bilginin tutulduğu sistem değişkeninin içeriğini ekrana yazdırarak, sisteminizdeki ön tanımlı değerini görüntüleyebilirsiniz. Değişkenleri ekrana yazdırmak için `echo` komutunu kullanabilirsiniz.
+
+### `$SHELL` Sistem Değişkeni
+
+Sisteminizde ön tanımlı olarak belirlenmiş kabuğun çalıştırılabilir dosya yolunu `$SHELL` sistem değişkenine bakarak öğrenebilirsiniz. 
 
 ```sh
 $ echo $SHELL
 /bin/bash
 ```
 
-Ön tanımlı kabuk değiştirildiğinde bir sonraki sistem açılışında aktif olur. Eğer ön tanımlı kabuğu değiştirdiyseniz ve sistemi henüz yeniden başlatmadıysanız, `$SHELL` değişkeni size yeni belirlediğiniz değeri döndürecektir. Ancak o anda hala geçerli kabuk değişimden önceki kabuktur. Bu bilgiye ulaşmak için de `$0` değişkenine bakabilirsiniz.
+### `$0` Bağımsız Değişkeni
+
+Ön tanımlı kabuk değiştirildiğinde bir sonraki sistem açılışında aktif olur. Eğer ön tanımlı kabuğu değiştirdiyseniz ve sistemi henüz yeniden başlatmadıysanız, `$SHELL` değişkeni size yeni belirlediğiniz değeri döndürecektir. Ancak o anda hala geçerli kabuk değişimden önceki kabuktur. Bu bilgiye ulaşmak için de `$0` değişkenine bakabilirsiniz. `$0` değişkeni, çalışan kabuk veya kabuk betiğinin çağrıldığı komutu taşır. Dolayısıyla bir kabuk çalışırken bu değişken, çalışan kabuğun çağrıldığı komutu taşıyacaktır. Bu komut da genelde, kabuğun adı olmaktadır.
 
 ```sh
 $ echo $0
 fish
 ```
 
-Ön tanımlı kabuğu değiştirmeden önce, gerekli kabuğa sahip olduğumuzdan emin olmanız gerekiyor. Eğer sistemimizde ön tanımlı kabuk olarak csh var ve biz bunu bash ile değiştirmek istiyorsak, değiştirme işleminden önce bash kabuğunu sistemimize yüklemiş olmamız gerekiyor. 
+### `/etc/shells` Dosyası
 
-Kabuklar genellikle `/bin` dizini altına yüklenir. Ancak farklı Linux dağıtımlarında bu durum değişebilir. Bazı dağıtımlarda `/usr/bin` veya `/usr/local/bin` gibi farklı konumlara da yüklenmiş olabilir. Bu nedenle ön tanımlı yapacağımız kabuğun kurulu olduğu dizini de öğrenmemiz gerekli.
+Diyelim ki sisteminizde ön tanımlı kabuk olarak csh var ve siz bunu bash ile değiştirmek istiyorsunuz. Değiştirme işleminden önce bash kabuğunu sisteminize yüklemiş olmanız gerekiyor. Ön tanımlı kabuğu değiştirmeden önce, gerekli kabuğa sahip olduğunuzdan emin olmanız gerekir. 
 
-Sisteminizde hangi kabukların yüklü olduğu bilgisi, `/etc` dizini altındaki `shells` dosyasında tutulur. Bu dosyanın içeriğini, `cat` komutunu kullanarak ekrana yazdırabilirsiniz. `cat /etc/shells` komutunu girdiğinizde, sisteminizde mevcut tüm kabuklar listelenecektir. Liste içinde, ön tanımlı olmasını istediğiniz kabuğun dizin yolunu görüyorsanız sisteminizde yüklü demektir. Eğer görünmüyorsa gerekli kabuğu sisteminize yüklemeniz gerekiyor.
+Kabuklar genellikle `/bin` dizini altına yüklenir. Ancak farklı Linux dağıtımlarında bu durum değişebilir. Bazı dağıtımlarda `/usr/bin` veya `/usr/local/bin` gibi farklı konumlara da yüklenmiş olabilir. Bu nedenle ön tanımlı yapacağınız kabuğun kurulu olduğu dizini de öğrenmeniz gerekli.
+
+Sisteminizde hangi kabukların yüklü olduğu bilgisi, `/etc` dizini altındaki `shells` dosyasında tutulur. Bu dosyanın içeriğini, `cat` komutunu kullanarak ekrana yazdırabilirsiniz. `cat /etc/shells` komutunu girdiğinizde, sisteminizde mevcut tüm kabuklar listelenecektir. Liste içinde, ön tanımlı olmasını istediğiniz kabuğun çalıştırılabilir dosya yolunu görüyorsanız sisteminizde yüklü demektir. Eğer görünmüyorsa gerekli kabuğu sisteminize yüklemeniz gerekiyor.
 
 ```sh
 $ cat /etc/shells
@@ -64,14 +72,17 @@ $ cat /etc/shells
 
 ```
 
-Gerekli kabuk listede görünüyorsa, işaret edilen dizinde yüklü olduğundan emin olmak için, `whereis` komutunu kullanabilirsiniz. Bu komut belirtilen bir programın çalıştırılabilir dosyasının, kaynak ve manual dosyalarının bulunduğu konumları görüntüler.
+### `whereis` Komutu
+
+Tanımlamak istediğimiz kabuğun dizin yolu `/etc/shells` dosyasında kayıtlı olmasına rağmen, sistemimizden kaldırılmış olabilir. İşaret edilen dizinde yüklü olduğundan emin olmak için, `whereis` komutunu kullanabilirsiniz. Bu komut belirtilen bir programın çalıştırılabilir dosyasının, kaynak ve manual dosyalarının bulunduğu konumları görüntüler.
 
 ```sh
 $ whereis bash
 bash: /bin/bash /etc/bash.bashrc /usr/share/man/man1/bash.1.gz
 ```
 
-İlk sırada görülen `/bin/bash`, bash kabuğunun çalıştırılabilir dosyasının dosya yolunu gösteriyor. Bu bilgiye ihtiyacımız olacak çünkü ön tanımlı kabuk bilgisini girerken kabuğun tam yolunu girmemiz gerekiyor. Bu yolu bir yere not edelim.
+İlk sırada görülen `/bin/bash`, bash kabuğunun çalıştırılabilir dosyasının dosya yolunu gösteriyor. Bu bilgiye ihtiyacımız olacak çünkü ön tanımlı kabuk bilgisini girerken kabuğun tam yolunu girmemiz gerekecek. Bu yolu bir yere not edelim.
+
 
 ## ÖN TANIMLI KABUĞU DEĞİŞTİRME
 
@@ -79,7 +90,7 @@ Yeni kabuğun yerini belirledikten sonra, root veya süper kullanıcı şifresin
 
 Kullanıcıların ön tanımlı kabuk bilgileri `/etc/passwd` dosyasında tutulur. Burada bulunan bilgiyi el yordamıyla değiştirebileceğiniz gibi, `usermod` veya `chsh` komutlarını kullanarak da bu işlemi yapabilirsiniz.
 
-### 1. 'chsh' komutunu kullanarak değiştirme
+### 1. 'chsh' Komutunu Kullanarak Değiştirme
 
 `chsh` herhangi bir kullanıcının giriş kabuğunu veya varsayılan komut kabuğunu değiştirir. `-s` veya `-shell` seçenekleri ile kullanarak ve kullanıcı adını belirterek, kullanıcının ön tanımlı kabuğunu değiştirebilirsiniz. Her kullanıcı kendi şifresiyle, kendi giriş kabuğunu bu komut ile değiştirebilir. Yönetici haklarına sahipseniz, root da dahil olmak üzere diğer bütün kullanıcıların ön tanımlı kabuklarını değiştirebilirsiniz. Kullanıcı adımızın `firat` olduğunu ve ön tanımlı kabuğu `bash` olarak değiştirmek istediğimizi düşünelim. Bu durumda komutu aşağıdaki gibi kullanabiliriz.
 
@@ -89,7 +100,7 @@ $ chsh -s /bin/bash firat
 **Not:** Komutu çalıştırdıktan sonra `$ grep 'firat' /etc/passwd` komutu ile, kullanıcının kabuk programı değişikliğini gözlemleyebilirsiniz. Yaptığınız değişikliğin etkinleşmesi için, kullanıcı oturumunu yenilemeniz gerekiyor.
 {: .notice--info} 
 
-### 2. 'usermod' komutu ile değiştirme
+### 2. 'usermod' Komutu ile Değiştirme
 
 `usermod`, kullanıcı hesaplarını değiştirmek için kullanılan bir komuttur. `-s` veya `-shell` seçenekleri ile kullanarak ve kullanıcı adını belirterek, kullanıcının ön tanımlı kabuğunu değiştirebilirsiniz. `usermod` komutunu kullanabilmek için süper kullanıcı olmanız veya yönetici haklarına sahip olmanız gerekir. Eğer süper kullanıcı değilseniz komutu `sudo` komutu ile beraber kullanın. `firat` kullanıcısının ön tanımlı kabuğunu bash olarak belirlemek istiyorsak, komutu aşağıdaki gibi kullanabiliriz.
 
@@ -100,7 +111,7 @@ $ sudo usermod -s /bin/bash firat
 **Not:** Komutu çalıştırdıktan sonra `$ grep 'firat' /etc/passwd` komutu ile, kullanıcının kabuk programı değişikliğini gözlemleyebilirsiniz. Yaptığınız değişikliğin etkinleşmesi için, kullanıcı oturumunu yenilemeniz gerekiyor.
 {: .notice--info}
 
-### 3. '/etc/passwd' dosyasını elle düzenleme
+### 3. '/etc/passwd' Dosyasını Elle Düzenleme
 
 **Dikkat:** `/etc/passwd` dosyası yönetici haklarıyla düzenlenir. Bu işlem yukarıdaki komutları kullanmaktan daha risklidir. Yönetici hakları ile bu dosya düzenlenirken sadece mevcut kullanıcının değil, `root` da dahil diğer tüm kullanıcıların kimlik bilgileri değiştirilebilir. Kontrolsüz bir müdahale, problemlere yol açabilir.
 {: .notice--danger} 
@@ -157,7 +168,7 @@ Ve dosyayı kaydediyoruz.
 **Not:** Yaptığınız değişikliğin etkinleşmesi için, kullanıcı oturumunu yenilemeniz gerekiyor.
 {: .notice--info}
 
-### 4. Yönetici haklarınız yoksa, süper kullanıcı değilseniz ve kök erişiminiz yoksa
+### 4. Yönetici Haklarınız Yoksa, Süper Kullanıcı Değilseniz ve Kök Erişiminiz Yoksa
 
 Bu durumda, `/etc/passwd` dosyasına ulaşamaz ve değiştiremezsiniz. Sadece mevcut kabuğu yürütme seçeneğiniz vardır. Ancak komut satırına kabuk adını yazıp çalıştırarak, istediğiniz kabuğa geçiş yapabilirsiniz. Aşağıda bash kabuğu kullanan bir kullanıcı, sistemde yüklü olan fish kabuğunu kullanmak için `fish` komutunu veriyor. Fish kabuğu komutla birlikte karşılama mesajını vererek çalışmaya başlıyor ve sonraki satırda bizden komut bekliyor. Artık bu dakikadan sonra verilen komutlar, fish kabuğu tarafından işlenecek. Aynı komut satırında `exit` komutunu verdiğinizde ise, fish kabuğundan çıkılarak tekrar eski kabuğa (bash) dönebilirsiniz. 
 
