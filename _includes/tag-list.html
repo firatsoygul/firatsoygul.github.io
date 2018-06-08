@@ -24,7 +24,7 @@
     {% for hash in tag_hashes %}
       {% assign keyValue = hash | split: '#' %}
       {% capture tag_word %}{{ keyValue[1] | strip_newlines }}{% endcapture %}
-      <a href="{{ tag_word | slugify | prepend: path_type | prepend: site.tag_archive.path | relative_url }}" class="archive__subtitle_tag_a" rel="tag">{{ tag_word }}</a>{% unless forloop.last %}<span class="sep">, </span>{% endunless %}
+      <a href="{{ tag_word | slugify | prepend: path_type | prepend: site.tag_archive.path | relative_url }}" class="archive__subtitle_tag_a" rel="tag"><i class="fas fa-fw fa-tags" aria-hidden="true"></i>{{ tag_word }}</a>{% unless forloop.last %}<span class="sep">, </span>{% endunless %}
     {% endfor %}
     </span>
   </p>
