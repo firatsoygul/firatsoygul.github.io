@@ -1,5 +1,5 @@
 ---
-title: "Linux'ta Kullanıcının Ön?"
+title: "Linux'ta Kullanıcının Ön Tanımlı Kabuğu Nasıl Değiştirilir?"
 permalink: /article/linux-on-tanimli-kabuk-degistirme/
 excerpt: "Linux işletim sisteminde ön tanımlı olarak yüklenen kabuk uygulaması nasıl değiştirilir?"
 date: 2018-05-25
@@ -13,8 +13,6 @@ tags:
   - Bash
   - chsh
   - usermod
-  - deneme
-  - vay vay vay
 header:
   teaser: "unsplash-gallery-image-2-th.jpg"
 toc: true

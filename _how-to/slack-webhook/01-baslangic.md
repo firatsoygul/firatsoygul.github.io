@@ -1,7 +1,7 @@
 ---
-title: "Slack Webhooks ile Komut Satırından Mesaj Gönderme"
+title: "Slack Webhooks ile Linux Komut Satırından Mesaj Gönderme"
 permalink: /how-to/slack-webhook/baslangic/
-excerpt: "Linux komut satırı üzerinden Slack mesajı gönderme."
+excerpt: "Linux komut satırını kullanarak, Slack projemize kendi tasarladığımız mesaj yapısını gönderiyoruz. Daha sonra aynı işlemi, kabuk betiği haline getiriyoruz ve YAD GUI aracını kullanarak, kullanıcıdan grafik arayüz aracılığı ile gerekli bilgileri alıyoruz."
 last_modified_at: 2018-05-20T15:19:22-04:00
 classes: wide
 categories: 

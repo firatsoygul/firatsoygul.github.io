@@ -14,12 +14,17 @@
   {% assign tag_hashes = page_tags | split: ',' | sort %}
 
   <p class="page__taxonomy">
-    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].tags_label | default: "Tags:" }} </strong>
-    <span itemprop="keywords">
+    <strong class="page_tag_list"><i class="fas fa-fw fa-tags" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].tags_label | default: "Tags:" }} </strong>
+    {% if page.collection == 'article'  or page.collection == 'how-to' or page.collection == 'posts' %}
+    {% capture page_tags_class %}list__item_border_{{page.collection}}{% endcapture %}
+    {% else %}
+    {% capture page_tags_class %}list__item_border_article{% endcapture %}
+    {% endif %}
+    <span class="{{page_tags_class}}" itemprop="keywords">
     {% for hash in tag_hashes %}
       {% assign keyValue = hash | split: '#' %}
       {% capture tag_word %}{{ keyValue[1] | strip_newlines }}{% endcapture %}
-      <a href="{{ tag_word | slugify | prepend: path_type | prepend: site.tag_archive.path | relative_url }}" class="page__taxonomy-item" rel="tag">{{ tag_word }}</a>{% unless forloop.last %}<span class="sep">, </span>{% endunless %}
+      <a href="{{ tag_word | slugify | prepend: path_type | prepend: site.tag_archive.path | relative_url }}" class="archive__subtitle_tag_a" rel="tag">{{ tag_word }}</a>{% unless forloop.last %}<span class="sep">, </span>{% endunless %}
     {% endfor %}
     </span>
   </p>

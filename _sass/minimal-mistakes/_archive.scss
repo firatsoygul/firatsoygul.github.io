@@ -1,6 +1,11 @@
 /* ==========================================================================
    ARCHIVE
    ========================================================================== */
+$list__item_border_article_color: #819efc !important;
+$list__item_border_how-to_color: #978ada !important;
+$list__item_border_posts_color: #4aa5ca !important;
+$list__item_border_category_color: #4aa5ca !important;
+
 
 .archive {
   margin-bottom: 2em;
@@ -22,16 +27,93 @@
 }
 
 .archive__subtitle {
-  margin: 1.414em 0 0;
+  //margin: 1.414em 0 0;
+  margin: 0;
   padding-bottom: 0.5em;
   font-size: $type-size-5;
   color: $muted-text-color;
   border-bottom: 1px solid $border-color;
+  font-weight: normal;
 
   + .list__item .archive__item-title {
     margin-top: 0.5em;
   }
 }
+
+.archive__subtitle_tag {
+  + .list__item .archive__item-title {
+    margin-top: 0.5em;
+  }
+}
+
+.list__item_border_article .archive__subtitle_tag_a, 
+.list__item_border_how-to .archive__subtitle_tag_a, 
+.list__item_border_posts .archive__subtitle_tag_a, 
+.list__item_border_category .archive__subtitle_tag_a {
+  color: $list__item_border_article_color;
+  display: inline-block;
+  background: rgba(106,159,181,0.15);
+  padding: 0 .5rem;
+  border-radius: 4px;
+  font-family: "PT Sans",Helvetica,Arial,sans-serif;
+  font-size: 81%;
+  -webkit-transition: all 0.1s ease-in-out;
+  -moz-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+  text-decoration: none;
+
+  &:hover {
+    background: $list__item_border_article_color;
+    color: white !important;
+  }
+
+  &:first-child {
+    margin-left: 10px;
+  }
+}
+
+.list__item_border_how-to .archive__subtitle_tag_a {
+  color: $list__item_border_how-to_color;
+
+  &:hover {
+    background: $list__item_border_how-to_color;
+  }
+
+}
+
+.list__item_border_posts .archive__subtitle_tag_a {
+  color: $list__item_border_posts_color;
+
+  &:hover {
+    background: $list__item_border_posts_color;
+  }
+
+}
+
+.list__item_border_category .archive__subtitle_tag_a {
+  color: $list__item_border_category_color;
+
+  &:hover {
+    background: $list__item_border_category_color;
+  }
+}
+
+.page_tag_list {
+
++ .list__item_border_article .archive__subtitle_tag_a, 
++ .list__item_border_how-to .archive__subtitle_tag_a, 
++ .list__item_border_posts .archive__subtitle_tag_a, 
++ .list__item_border_category .archive__subtitle_tag_a {
+  font-size: 100%;
+  }
+}
+
+.page_categories_list {
+ 
+  + .list__item_border_category .archive__subtitle_tag_a {
+    font-size: 100%;
+    }
+  }
 
 .archive__second__subtitle {
   margin: 1.414em 0 -1.4em;
@@ -48,6 +130,8 @@
   line-height: initial;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-weight: normal;
+  color: #272a2c;
 
   a {
     color: inherit;
@@ -56,6 +140,7 @@
   a + a {
     opacity: 0.5;
   }
+
 }
 
 /* remove border*/
@@ -68,7 +153,9 @@
 
 .archive__item-excerpt {
   margin-top: 0;
+  margin-bottom: 8px;
   font-size: $type-size-5a;
+  color: #656565;
 
   & + p {
     text-indent: 0;
@@ -87,10 +174,65 @@
    List view
    ========================================================================== */
 
+
 .list__item {
   .page__meta {
     margin: 0 0 4px;
-    font-size: 0.6em;
+    font-size: 0.65em;
+  }
+}
+
+.list__item_border_article {
+  padding-left: 0.7em;
+  border-left: 1px solid $list__item_border_article_color;
+  margin-bottom: 70px;
+
+  h3 {
+    color: $list__item_border_article_color;
+  }
+}
+
+.list__item_border_how-to {
+  padding-left: 0.7em;
+  border-left: 1px solid $list__item_border_how-to_color;
+  margin-bottom: 70px;
+
+  h3 {
+    color: $list__item_border_how-to_color;
+  }
+}
+
+.list__item_border_posts {
+  padding-left: 0.7em;
+  border-left: 1px solid $list__item_border_posts_color;
+  margin-bottom: 70px;
+
+  h3 {
+    color: $list__item_border_posts_color;
+  }
+}
+
+.list__item_border_category {
+  padding-left: 0.7em;
+  border-left: 1px solid $list__item_border_category_color;
+
+  h3 {
+    color: $list__item_border_category_color;
+  }
+}
+
+.author_icon_page_meta {
+  width: 15px;
+  height: 15px;
+  margin-right: 5px;
+  margin-bottom: 1px;
+}
+
+.archive__item .page__meta span {
+  margin: 0 7px 0 7px;
+
+  &:first-child{
+      margin-left: 0px;
   }
 }
 

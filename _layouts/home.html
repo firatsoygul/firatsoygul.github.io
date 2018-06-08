@@ -2,10 +2,56 @@
 layout: archive
 ---
 
-<h3 class="archive__subtitle">{{ site.data.ui-text[site.locale].recent_posts | default: "Recent Posts" }}</h3>
+{% if page.url == "/" %}
 
+<!-- Makaleler-->
+<div class="list__item_border_article">
+<span class="archive__subtitle_span" style="display:inline-block;"><h3 class="archive__subtitle">{{ site.data.ui-text[site.locale].recent_articles | default: "Recent  Articles" }}</h3></span>
+{% assign tags_of_collection =  "article" %}
+<span class="archive__subtitle_tag">{% include tag-list-collection.html %}</span>
+
+{% for collection in site.collections %}
+  {% unless collection.output == false or collection.label == "posts" %}
+    {% if collection.label == "article" %}
+    {% for post in collection.docs limit: 5 %}
+          {% include archive-single.html %}
+    {% endfor %}
+    {% endif %}
+  {% endunless %} 
+{% endfor %}
+</div>
+
+<!-- Nasıl Yapıldı Dökümanları-->
+<div class="list__item_border_how-to">
+<span class="archive__subtitle_span" style="display:inline-block;"><h3 class="archive__subtitle">{{ site.data.ui-text[site.locale].how_to_docs | default: "How to Documents" }}</h3></span>
+{% assign tags_of_collection =  "how-to" %}
+<span class="archive__subtitle_tag">{% include tag-list-collection.html %}</span>
+{% for collection in site.collections %}
+  {% unless collection.output == false or collection.label == "posts" %}
+    {% if collection.label == "how-to" %}
+    {% for post in collection.docs %}
+      {% for category in post.categories %}
+        {% if category == "Nasıl Yapıldı" %}
+          {% include archive-single.html %}
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+    {% endif %}
+  {% endunless %}
+{% endfor %}
+</div>
+
+{% endif %}
+
+
+<!-- Son yazılar-->
+<div class="list__item_border_posts">
+<span class="archive__subtitle_span" style="display:inline-block;"><h3 class="archive__subtitle">{{ site.data.ui-text[site.locale].recent_posts | default: "Recent Posts" }}</h3></span>
+{% assign tags_of_collection =  "posts" %}
+<span class="archive__subtitle_tag">{% include tag-list-collection.html %}</span>
 {% for post in paginator.posts %}
   {% include archive-single.html %}
 {% endfor %}
 
 {% include paginator.html %}
+</div>

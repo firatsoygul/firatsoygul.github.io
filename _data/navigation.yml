@@ -25,7 +25,7 @@ main:
   - title: "Makale"
     url: /article/
   - title: "Blog"
-    url: /year-archive/
+    url: /blog/
   - title: "Çalışma"
     url: /projects/
   #- title: "Sample Posts"

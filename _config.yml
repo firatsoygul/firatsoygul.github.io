@@ -232,6 +232,7 @@ defaults:
       type: how-to
     values:
       layout: single
+      author: Fırat Soygül
       author_profile: false
       share: true
       comments: true
@@ -244,6 +245,7 @@ defaults:
       type: projects
     values:
       layout: single
+      author: Fırat Soygül
       author_profile: true
       share: true
       comments: false
@@ -254,6 +256,7 @@ defaults:
     values:
       layout: single
       read_time: true
+      author: Fırat Soygül
       author_profile: true
       share: true
       comments: true
@@ -275,7 +278,7 @@ sass:
 # Outputting
 permalink: /:categories/:title/
 paginate: 5 # amount of posts to show
-paginate_path: /page:num/
+paginate_path: /blog/page:num/
 timezone: Europe/Istanbul # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 
 

@@ -1,18 +1,18 @@
 # Authors
 
-Firat Soygul:
+Fırat Soygül:
   name        : "Fırat Soygül"
   uri         : "http://thewhip.com"
   email       : "firat_soygul@hotmail.com"
   bio         : ""
-  avatar      : "/assets/images/bio-photo-2.jpg"
+  avatar      : "/assets/images/bio-photo.jpg"
   twitter     : "firatsoygul"
   google_plus : ""
 
-Cornelius Fiddlebone:
-  name        : "Cornelius Fiddlebone"
+Deneme:
+  name        : "Deneme"
   email       : "cornelius@thewhip.com"
   bio         : "I ordered what?"
-  avatar      : "/assets/images/bio-photo.jpg"
-  twitter     : "rhymeswithsackit"
-  google_plus : "CorneliusFiddlebone"
+  avatar      : "/assets/images/bio-photo-2.jpg"
+  twitter     : "deneme"
+  google_plus : "Deneme"
