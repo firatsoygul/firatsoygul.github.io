@@ -1,0 +1,28 @@
+<div class="list__item_border_{{ include.item_collection | default: "posts" }}">
+    <div class="archive_subtitle_container" >
+    <span class="archive__subtitle_span">
+      {% assign subtitle_lang = 'recent_' | append: include.item_collection %}
+      {% assign subtitle_lang_default = 'Recent ' | append: {{include.item_collection | upcase}} %}
+      <h3 class="archive__subtitle">{{ site.data.ui-text[site.locale].[subtitle_lang] | default: subtitle_lang_default }}</h3>
+    </span>
+    {% assign of_collection = include.item_collection %}
+    <span class="archive__subtitle_tag">{% include tag-list-collection.html %}</span>
+    </div>
+    {% for collection in site.collections %} 
+      {% unless collection.output == false or collection.label == "posts" %} 
+        {% if collection.label == include.item_collection %} 
+          {% for post in collection.docs limit: include.limit %} 
+            {% for category in post.categories %} 
+            {% if include.item_category %}
+              {% if category == include.item_category %}
+                {% include archive-with-image.html item_teaser=include.item_teaser item_collection=include.item_collection %}
+              {% endif %} 
+            {% else %}
+              {% include archive-with-image.html item_teaser=include.item_teaser item_collection=include.item_collection %}
+            {% endif %}
+            {% endfor %} 
+          {% endfor %} 
+        {% endif %} 
+      {% endunless %} 
+    {% endfor %}
+  </div>

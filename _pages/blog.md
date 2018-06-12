@@ -1,19 +1,9 @@
---- 
+---
+permalink: /blog/
 layout: splash
---- 
+---
 
-{% if page.url == "/" %}
-
-<!-- Makaleler-->
-{% include single-category-by-single-collection-with-tags.html item_collection="article" item_teaser="yes" limit=10 %}
-
-<!-- Nasıl Yapıldı Dökümanları -->
-{% include single-category-by-single-collection-with-tags.html item_collection="how-to" item_category="Nasıl Yapıldı" item_teaser="yes" limit=10 %}
-
-{% endif %}
-
-
-<!-- Son yazılar-->
+ <!-- Son yazılar-->
 <div class="list__item_border_posts">
     <div class="archive_subtitle_container" >
   <span class="archive__subtitle_span" style="display:inline-block;">
@@ -22,7 +12,7 @@ layout: splash
   {% assign of_collection = "posts" %}
   <span class="archive__subtitle_tag">{% include tag-list-collection.html %}</span>
   </div>
-  {% for post in paginator.posts %}
+  {% for post in site.posts %}
     {% include archive-with-image.html item_teaser="yes" item_collection=of_collection %}
-  {% endfor %} {% include paginator.html %}
+  {% endfor %}
 </div>

@@ -1,4 +1,4 @@
-{% assign tags =  site[tags_of_collection] | map: 'tags' | join: ','  | split: ',' | uniq %}
+{% assign tags =  site[of_collection] | map: 'tags' | join: ','  | split: ',' | uniq %}
 {% for tag in tags limit:6 %}
   <a href="" class="archive__subtitle_tag_a"><i class="fas fa-fw fa-tags" aria-hidden="true"></i>{{ tag }}</a>
 {% endfor %}

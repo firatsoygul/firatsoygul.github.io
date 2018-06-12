@@ -10,6 +10,8 @@ categories:
 tags:
   - video
   - layout
+header:
+  teaser: "/assets/images/unsplash-gallery-image-2-th.jpg"
 ---
 
 This post should display a **header with a responsive video**, if the theme supports it.

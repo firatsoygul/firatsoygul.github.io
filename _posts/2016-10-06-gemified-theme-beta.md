@@ -7,6 +7,8 @@ tags:
   - update
 toc: true
 toc_label: "Getting Started"
+header:
+teaser: "/assets/images/unsplash-gallery-image-2-th.jpg"
 ---
 
 Hot on the heels of Jekyll v3.3.0 is a beta release of Minimal Mistakes... as a gemified theme.
