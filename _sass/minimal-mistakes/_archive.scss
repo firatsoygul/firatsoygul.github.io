@@ -5,6 +5,7 @@ $list__item_border_article_color: #819efc !important;
 $list__item_border_how-to_color: #978ada !important;
 $list__item_border_posts_color: #4aa5ca !important;
 $list__item_border_category_color: #f79eb4 !important;
+$list__item_border_projects_color: #79b13a !important;
 
 
 .archive {
@@ -57,7 +58,8 @@ $list__item_border_category_color: #f79eb4 !important;
 
 .list__item_border_article .archive__subtitle_tag_a, 
 .list__item_border_how-to .archive__subtitle_tag_a, 
-.list__item_border_posts .archive__subtitle_tag_a, 
+.list__item_border_posts .archive__subtitle_tag_a,
+.list__item_border_projects .archive__subtitle_tag_a,
 .list__item_border_category .archive__subtitle_tag_a {
   color: $list__item_border_article_color;
   display: inline-block;
@@ -121,11 +123,20 @@ $list__item_border_category_color: #f79eb4 !important;
   }
 }
 
+.list__item_border_projects .archive__subtitle_tag_a {
+  color: $list__item_border_projects_color;
+
+  &:hover {
+    background: $list__item_border_projects_color;
+  }
+}
+
 .page_tag_list {
 
 + .list__item_border_article .archive__subtitle_tag_a, 
 + .list__item_border_how-to .archive__subtitle_tag_a, 
 + .list__item_border_posts .archive__subtitle_tag_a, 
++ .list__item_border_projects .archive__subtitle_tag_a
 + .list__item_border_category .archive__subtitle_tag_a {
   font-size: 100%;
   margin-bottom: 7px;
@@ -143,7 +154,7 @@ $list__item_border_category_color: #f79eb4 !important;
   }
 
 .archive__second__subtitle {
-  margin: 1.414em 0 -1.4em;
+  margin: 1.414em 0 0.6em;
   padding-bottom: 0.5em;
   font-size: $type-size-6;
   color: $muted2-text-color;
@@ -220,7 +231,7 @@ $list__item_border_category_color: #f79eb4 !important;
 }
 
 .list__item_container {
-margin-bottom: 2.7em;
+margin-bottom: 2.6em;
 }
 
 .list__item_border_article {
@@ -254,6 +265,13 @@ margin-bottom: 2.7em;
   }
 }
 
+.list__item_border_projects {
+
+  h3 {
+    color: $list__item_border_projects_color;
+  }
+}
+
 .list__item_sub_border_article {
   padding-left: 0.7em;
   display: inline-block;
@@ -279,6 +297,13 @@ margin-bottom: 2.7em;
   padding-left: 0.7em;
   display: inline-block;
   border-left: 1px solid $list__item_border_category_color;
+  width: 81%;
+}
+
+.list__item_sub_border_projects {
+  padding-left: 0.7em;
+  display: inline-block;
+  border-left: 1px solid $list__item_border_projects_color;
   width: 81%;
 }
 

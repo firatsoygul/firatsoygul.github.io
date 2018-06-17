@@ -5,7 +5,7 @@ excerpt: "Görme Zorlugu Yaşayanlar İçin Video ve Ses Dosyalarını Oynatmak 
 date: 2016-12-30
 last_modified_at: 2018-05-20T15:19:22-04:00
 classes: wide
-categories: 
+categories:
   - Uygulama
 tags:
   - Windows Uygulaması

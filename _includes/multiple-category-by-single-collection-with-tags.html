@@ -1,0 +1,39 @@
+<div class="list__item_border_{{ include.item_collection | default: "posts" }}">
+    <div class="archive_subtitle_container" >
+    <span class="archive__subtitle_span">
+      {% assign subtitle_lang = 'recent_' | append: include.item_collection %}
+      {% assign subtitle_lang_default = 'Recent ' | append: {{include.item_collection | upcase}} %}
+      <h3 class="archive__subtitle">{{ site.data.ui-text[site.locale].[subtitle_lang] | default: subtitle_lang_default }}</h3>
+    </span>
+    {% assign of_collection = include.item_collection %}
+    <span class="archive__subtitle_tag">{% include tag-list-collection.html %}</span>
+    </div>
+    
+    
+    {% capture written_label %}'None'{% endcapture %}
+
+
+{% assign mydocs = site[include.item_collection] | map: 'categories' | join: ','  | split: ',' | uniq %}
+{% for cat in mydocs %}
+{% capture category_label %}{{ cat | capitalize }}{% endcapture %}
+{% if category_label != written_label %}
+    <h2 id="{{ category_label | slugify }}" class="archive__second__subtitle">{{ category_label }}</h2>
+    {% capture written_label %}{{ category_label }}{% endcapture %}
+{% endif %}
+
+{% for collection in site.collections %} 
+      {% unless collection.output == false or collection.label == "posts" %} 
+        {% if collection.label == include.item_collection %} 
+
+          {% for post in collection.docs limit: include.limit %} 
+          {% for post_cat in post.categories %}
+            {% if post_cat == cat %}
+            {% include archive-with-image.html item_teaser=include.item_teaser item_collection=include.item_collection %}
+            {% endif %}
+            {% endfor %}
+          {% endfor %}
+
+        {% endif %}
+      {% endunless %}
+{% endfor %}
+{% endfor %}

@@ -1,9 +1,8 @@
 ---
-title: Çalışmalar
-layout: single-category-by-multiple-collectons
+layout: splash
 permalink: /projects/
 classes: wide
-category: Projects
 collection: projects
 ---
 
+{% include multiple-category-by-single-collection-with-tags.html item_collection=page.collection item_teaser="yes" limit=10 %}

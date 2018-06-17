@@ -14,7 +14,8 @@
 
 <div class="list__item">
   <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    <!-- Header teaser-->
+    
+    {% comment %} <!-- Header teaser--> {% endcomment %}
     {% if include.item_teaser == "yes" and teaser %}
       <div class="archive__item-teaser">
         <img src=
@@ -26,6 +27,7 @@
           alt="">
       </div>
     {% endif %}
+
     {% comment %} <!-- Archive title--> {% endcomment %}
     <div class="list__item_sub_border_{{ include.item_collection | default: "article" }}" >
 

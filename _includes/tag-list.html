@@ -15,7 +15,7 @@
 
   <p class="page__taxonomy">
     <strong class="page_tag_list"><i class="fas fa-fw fa-tags" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].tags_label | default: "Tags:" }} </strong>
-    {% if page.collection == 'article'  or page.collection == 'how-to' or page.collection == 'posts' %}
+    {% if page.collection == 'article'  or page.collection == 'how-to' or page.collection == 'posts' or page.collection == 'projects'%}
     {% capture page_tags_class %}list__item_border_{{page.collection}}{% endcapture %}
     {% else %}
     {% capture page_tags_class %}list__item_border_article{% endcapture %}
