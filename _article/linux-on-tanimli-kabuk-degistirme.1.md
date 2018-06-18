@@ -27,7 +27,7 @@ Linux'ta bir kullanıcı oluşturulduğunda, o kullanıcıya bir kabuk tanımlan
 **Not:** Linux ortamında çalışan [bash](https://www.gnu.org/software/bash/bash.html), csh, sh, [ksh](http://www.kornshell.org/), [tcsh](https://github.com/tcsh-org/tcsh), [zsh](http://www.zsh.org/), [fish](https://fishshell.com/) gibi bir çok kabuk programı var. Bunların içinde en popüler olanı bash kabuğudur ve çoğu dağıtımda ön tanımlı olarak gelir. Sisteminize birden fazla kabuk kurabilir ve bunların ön tanımlı olarak çalışma durumunu değiştirebilirsiniz.
 {: .notice--info}
 
-Kullanıcı kabuğu değiştirmeden önce, mevcut kabuğun ne olduğunu ve değiştirmek istediği kabuğun sistemde yüklü olup olmadığını öğrenmek isteyebilir. Bu işlemler için [**mevcut kabuğu öğrenme**](#mevcut-kabuğu-öğrenme) başlığını, kabuk değiştirme konusu için de [**ön tanımlı kabuğu değiştirme**](#ön-tanımlı-kabuğu-değiştirme) başlığını okuyabilirsiniz.
+Kullanıcı, kabuğu değiştirmeden önce mevcut kabuğun ne olduğunu ve değiştirmek istediği kabuğun sistemde yüklü olup olmadığını öğrenmek isteyebilir. Bu işlemler için [**mevcut kabuğu öğrenme**](#mevcut-kabuğu-öğrenme) başlığını, kabuk değiştirme konusu için de [**ön tanımlı kabuğu değiştirme**](#ön-tanımlı-kabuğu-değiştirme) başlığını okuyabilirsiniz.
 
 ## MEVCUT KABUĞU ÖĞRENME
 
@@ -35,7 +35,7 @@ Linux sistemlerde sıkça kullanılan bazı değerler sistem değişkeni olarak 
 
 ### `$SHELL` Sistem Değişkeni
 
-Sisteminizde ön tanımlı olarak belirlenmiş kabuğun çalıştırılabilir dosya yolunu `$SHELL` sistem değişkenine bakarak öğrenebilirsiniz.
+Sisteminizde ön tanımlı olarak belirlenmiş kabuğun çalıştırılabilir dosya yolunu, `$SHELL` sistem değişkenine bakarak öğrenebilirsiniz.
 
 ```sh
 $ echo $SHELL
@@ -90,7 +90,7 @@ Kullanıcıların ön tanımlı kabuk bilgileri `/etc/passwd` dosyasında tutulu
 
 ### 1. 'chsh' Komutunu Kullanarak Değiştirme
 
-`chsh` herhangi bir kullanıcının giriş kabuğunu veya varsayılan komut kabuğunu değiştirir. `-s` veya `-shell` seçenekleri ile kullanarak ve kullanıcı adını belirterek, kullanıcının ön tanımlı kabuğunu değiştirebilirsiniz. Her kullanıcı kendi şifresiyle, kendi giriş kabuğunu bu komut ile değiştirebilir. Yönetici haklarına sahipseniz, root da dahil olmak üzere diğer bütün kullanıcıların ön tanımlı kabuklarını değiştirebilirsiniz. Kullanıcı adımızın `firat` olduğunu ve ön tanımlı kabuğu `bash` olarak değiştirmek istediğimizi düşünelim. Bu durumda komutu aşağıdaki gibi kullanabiliriz.
+`chsh` herhangi bir kullanıcının giriş kabuğunu veya varsayılan komut kabuğunu değiştirir. `-s` veya `-shell` parametreleri ile kullanarak, kullanıcı adını belirterek ve yukarıdaki [**mevcut kabuğu öğrenme**](#mevcut-kabuğu-öğrenme) başlığında anlatıldığı şekilde elde edilen, kabuğun çalıştırılabilir dosya yolunu girerek kullanıcının ön tanımlı kabuğunu değiştirebilirsiniz. Her kullanıcı kendi şifresiyle, kendi giriş kabuğunu bu komut ile değiştirebilir. Yönetici haklarına sahipseniz, root da dahil olmak üzere diğer bütün kullanıcıların ön tanımlı kabuklarını değiştirebilirsiniz. Kullanıcı adımızın `firat` olduğunu ve ön tanımlı kabuğu `bash` olarak değiştirmek istediğimizi düşünelim. Bu durumda komutu aşağıdaki gibi kullanabiliriz.
 
 ```sh
 chsh -s /bin/bash firat
@@ -148,7 +148,7 @@ firat:x:1000:1000:Firat S.,,,:/home/firat:/usr/bin/fish
 usbmux:x:107:46:usbmux daemon,,,:/var/lib/usbmux:/bin/false
 ```
 
-Görüldüğü gibi, firat kullanıcısının bulunduğu satırda en son sırada ön tanımlı kabuk uygulamasının dosya yolu bulunuyor. Herhangi bir metin editörüyle bu dosyayı açarak, kullanıcının bulunduğu satırdaki kabuk bilgisini değiştirdiğinizde ve sistem yeniden başlatıldığında ön tanımlı kabuğu değiştirmiş olursunuz. `/etc/passwd` dosyası her kullanıcı tarafından görüntülenebilir ancak düzenlemek için yönetici hakları gerektirir. Bu nedenle dosyayı yönetici hakları ile açmamız gerekiyor. Bu işlemi `sudo` komutu ile yapabilirsiniz.
+Görüldüğü gibi, firat kullanıcısının bulunduğu satırda en son sırada ön tanımlı kabuk uygulamasının dosya yolu bulunuyor. Herhangi bir metin editörüyle bu dosyayı açarak, kullanıcının bulunduğu satırdaki kabuk bilgisini değiştirdiğinizde ve sistemi yeniden başlattığınızda ön tanımlı kabuğu değiştirmiş olursunuz. `/etc/passwd` dosyası her kullanıcı tarafından görüntülenebilir ancak düzenlemek için yönetici hakları gerektirir. Bu nedenle dosyayı yönetici hakları ile açmamız gerekiyor. Bu işlemi `sudo` komutu ile yapabilirsiniz.
 
 ```sh
 sudo gedit /etc/passwd
@@ -169,7 +169,7 @@ Ve dosyayı kaydediyoruz.
 
 ### 4. Yönetici Haklarınız Yoksa, Süper Kullanıcı Değilseniz ve Kök Erişiminiz Yoksa
 
-Bu durumda, `/etc/passwd` dosyasına ulaşamaz ve değiştiremezsiniz. Sadece mevcut kabuğu yürütme seçeneğiniz vardır. Ancak komut satırına kabuk adını yazıp çalıştırarak, istediğiniz kabuğa geçiş yapabilirsiniz. Aşağıda bash kabuğu kullanan bir kullanıcı, sistemde yüklü olan fish kabuğunu kullanmak için `fish` komutunu veriyor. Fish kabuğu komutla birlikte karşılama mesajını vererek çalışmaya başlıyor ve sonraki satırda bizden komut bekliyor. Artık bu dakikadan sonra verilen komutlar, fish kabuğu tarafından işlenecek. Aynı komut satırında `exit` komutunu verdiğinizde ise, fish kabuğundan çıkılarak tekrar eski kabuğa (bash) dönebilirsiniz.
+Bu durumda, `/etc/passwd` dosyasına ulaşamaz ve değiştiremezsiniz. Sadece mevcut kabuğu yürütme seçeneğiniz vardır. Ancak komut satırına kabuk adını yazıp çalıştırarak, istediğiniz kabuğa geçiş yapabilirsiniz. Aşağıda bash kabuğu kullanan bir kullanıcı, sistemde yüklü olan fish kabuğunu kullanmak için `fish` komutunu veriyor. Fish kabuğu komutla birlikte karşılama mesajını vererek çalışmaya başlıyor ve sonraki satırda bizden komut bekliyor. Artık bu dakikadan sonra verilen komutlar, fish kabuğu tarafından işlenecek.
 
 ```sh
 firat@ubuntu-f:~$ fish
@@ -177,9 +177,16 @@ Welcome to fish, the friendly interactive shell
 firat@ubuntu-f ~>
 ```
 
-Ya da biraz daha kalıcı bir yöntem olarak, kabuğun başlatma dosyalarına gerekli komutları ekleyerek istediğiniz kabuğu kullanabilirsiniz. Ancak bu işlem **ön tanımlı kabuğu değiştirmez**, sadece kabuğu kullanmanızı sağlar.
+Aynı komut satırında `exit` komutunu verdiğinizde ise, fish kabuğundan çıkarak tekrar eski kabuğa (bash) dönebilirsiniz.
 
-İlk olarak **mevcut kabuğu öğrenme** başlığında anlatıldığı gibi, kullanmak istediğiniz kabuğun dosya yolunu bulmanız gerekiyor. Daha sonra da mevcut kabuğunuzun yapılandırma dosyalarını bulun.
+```sh
+firat@ubuntu-f ~> exit
+firat@ubuntu-f:~$
+```
+
+İkinci ve biraz daha kalıcı bir yöntem olarak, kabuğun başlatma dosyalarına gerekli komutları ekleyerek, mevcut varsayılan kabuk başlatıldığında diğer kabuğun çalışması sağlanabilir. Ancak bu işlem **ön tanımlı kabuğu değiştirmez**, sadece kabuğu kullanmanızı sağlar.
+
+İlk olarak [**mevcut kabuğu öğrenme**](#mevcut-kabuğu-öğrenme) başlığında anlatıldığı gibi, kullanmak istediğiniz kabuğun dosya yolunu bulmanız gerekiyor. Daha sonra da mevcut kabuğunuzun yapılandırma dosyalarını bulun.
 
 {% capture notice-text %}
 **Yapılandırma dosyaları hakkında:** Linux'ta çalışan bir kabuk, "çalışma şekline" göre farklı kategorilere ayrılır. Her şekilde de çalışan program aynı olmasına rağmen, çalışma şekli bakımından bir kategoriye dahil olur.
@@ -190,9 +197,9 @@ Ya da biraz daha kalıcı bir yöntem olarak, kabuğun başlatma dosyalarına ge
 Ayrıca kullanıcı ile etkileşimi yönünden de iki kategoriye ayrılır.
 
 - Etkileşimli kabuk (interactive shell)
-- Etkileşimsiz kabuk. (non-interactive shell)
+- Etkileşimsiz kabuk (non-interactive shell)
 
-Kabuk programları başlatıldığında, dahil olduğu kategorilere göre, yürüttüğü bazı yapılandırma dosyaları vardır. (Aşağıdaki bilgiler **bash** kabuğu için geçerlidir. Diğer kabukların kullandığı yapılandırma dosyalarını, [bu sayfadaki](https://www.wikiwand.com/en/Unix_shell) tablodan inceleyebilirsiniz.)
+Kabuk programları başlatıldığında, dahil olduğu kategorilere göre yürüttüğü bazı yapılandırma dosyaları vardır. (Aşağıdaki bilgiler **bash** kabuğu için geçerlidir. Diğer kabukların kullandığı yapılandırma dosyalarını, [**bu sayfada**](https://www.wikiwand.com/en/Unix_shell) bulunan [**'Configuration files'**](https://www.wikiwand.com/en/Unix_shell#/Configuration%20files) başlığı altındaki tablodan inceleyebilirsiniz.)
 
 **Giriş kabuğu (Login shell):**
 
@@ -208,7 +215,7 @@ Kabuk programları başlatıldığında, dahil olduğu kategorilere göre, yür�
 
 <div class="notice"> {{ notice-text | markdownify }} </div>
 
-Yapılandırma dosyaları içinden rc dosyalarını kullanmanız daha yerinde olacaktır. Çünkü dosyaları **etkileşimli**, **etkileşimsiz** ve **giriş olan**, **giriş olmayan** kabuklar tarafından okunur. Hedef kabuk programınıza bağlı olarak, **bash** kabuğu kullanacaksanız `~/.bashrc` dosyasını, **csh** kabuğunu kullanacaksanız `~/.cshrc` dosyasını kullanmanız gerekir. Diğer kabukların kullandığı yapılandırma dosyalarını, [bu sayfadaki](https://www.wikiwand.com/en/Unix_shell) tablodan inceleyebilirsiniz.
+Yapılandırma dosyaları içinden rc dosyalarını kullanmanız daha yerinde olacaktır. Çünkü dosyaları **etkileşimli**, **etkileşimsiz** ve **giriş olan**, **giriş olmayan** kabuklar tarafından okunur. Hedef kabuk programınıza bağlı olarak, **bash** kabuğu kullanacaksanız `~/.bashrc` dosyasını, **csh** kabuğunu kullanacaksanız `~/.cshrc` dosyasını kullanmanız gerekir. Diğer kabukların kullandığı yapılandırma dosyalarını, [**'bu tablodan'**](https://www.wikiwand.com/en/Unix_shell#/Configuration%20files) inceleyebilirsiniz.
 
 Diyelim ki mevcut kabuğunuz bash ve siz fish kabuğunu başlatmak istiyorsunuz. O halde `~/.bashrc` dosyasını açarak aşağıdaki komutları eklemeniz gerekiyor.
 
@@ -235,8 +242,8 @@ source ~/.bashrc
 **Bilgi:** Bir komut dosyası çalıştırıldığında, bir alt kabukta çalışır. İşlem tamamlandığında alt kabuk kapanır ve denetim orijinal kabuğa geri döner. Komut dosyasında ayarlanan herhangi bir şey alt kabuk için geçerli olacağından, kabuk kapatıldığında bu ayarlar kaybolur. Komut dosyasını bir alt kabukta değil de geçerli kabukta çalıştırmak için `source` komutu kullanılır. Bu komutla çalışırılan komut dosyasında yapılan ayarlar, geçerli kabuk için geçerli olacaktır.
 {: .notice}
 
-**Bilgi:** Yapılandırma dosyalarında varsayılan ayarlara dönmek isterseniz, genellikle `/etc/skeleton`, `/etc/skel/` ya da `/etc/default` dizinleri altında bulunan aynı isimdeki dosyaları kullanabilirsiniz. Bu dosyalar, giriş sırasında ayarlanan **standart** ortam değişkenlerini tanımlayan betiklerdir.
-{: .notice}
+**Not:** Yapılandırma dosyalarında yaptığınız değişikliklerde varsayılan ayarlara dönmek isterseniz, genellikle `/etc/skeleton`, `/etc/skel/` ya da `/etc/default` dizinleri altında bulunan aynı isimdeki dosyaları kullanabilirsiniz. Bu dosyalar, giriş sırasında ayarlanan **standart** ortam değişkenlerini tanımlayan betiklerdir. Bu dosyaları, içeriği değiştirilmiş dosyalarla yer değiştirdiğinizde sisteminiz ilk kurulumundaki tanımlara sahip olacaktır.
+{: .notice--success}
 
 Kaynaklar:  
 <http://www.belgeler.org/bashref/bashref_startup.files.html>  

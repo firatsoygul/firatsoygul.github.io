@@ -13,7 +13,7 @@ tags:
   - Kabuk programlama
   - Kabuk betiği
 header:
-  teaser: "/assets/images/unsplash-gallery-image-2.jpg"
+  teaser: "/assets/images/how-to/slack-webhook/slack-header.png"
 ---
 
 Başlangıç
