@@ -67,7 +67,7 @@ $list__item_border_projects_color: #79b13a !important;
   padding: 0 .5rem;
   border-radius: 4px;
   font-family: "PT Sans",Helvetica,Arial,sans-serif;
-  font-size: 81%;
+  font-size: 83%;
   -webkit-transition: all 0.1s ease-in-out;
   -moz-transition: all 0.1s ease-in-out;
   transition: all 0.1s ease-in-out;
@@ -169,8 +169,8 @@ $list__item_border_projects_color: #79b13a !important;
   line-height: initial;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-weight: normal;
-  color: #3b3f42;
+  // font-weight: normal;
+  color: #5f5e5e;
 
   a {
     color: inherit;
@@ -195,6 +195,7 @@ $list__item_border_projects_color: #79b13a !important;
   margin-bottom: 8px !important;
   font-size: $type-size-5a;
   color: #656565;
+  min-height: 48px;
 
   & + p {
     text-indent: 0;
@@ -212,8 +213,8 @@ $list__item_border_projects_color: #79b13a !important;
     width: 100%;
     
     @include breakpoint($medium) {
-      height: 4.6em !important;
-      width: 6.6em !important;
+      // height: 4.6em !important;
+      width: 8.8em !important;
     }
   }
 }
@@ -231,11 +232,12 @@ $list__item_border_projects_color: #79b13a !important;
 }
 
 .list__item_container {
-margin-bottom: 2.6em;
+  display: grid;
+ margin-bottom: 0.5em;
 }
 
 .list__item_border_article {
-  margin-bottom: 70px;
+  margin-bottom: 35px;
 
   h3 {
     color: $list__item_border_article_color;
@@ -243,7 +245,7 @@ margin-bottom: 2.6em;
 }
 
 .list__item_border_how-to {
-  margin-bottom: 70px;
+  margin-bottom: 35px;
 
   h3 {
     color: $list__item_border_how-to_color;
@@ -251,7 +253,7 @@ margin-bottom: 2.6em;
 }
 
 .list__item_border_posts {
-  margin-bottom: 70px;
+  margin-bottom: 35px;
 
   h3 {
     color: $list__item_border_posts_color;
@@ -259,6 +261,7 @@ margin-bottom: 2.6em;
 }
 
 .list__item_border_category {
+  margin-bottom: 35px;
 
   h3 {
     color: $list__item_border_category_color;
@@ -276,35 +279,35 @@ margin-bottom: 2.6em;
   padding-left: 0.7em;
   display: inline-block;
   border-left: 1px solid $list__item_border_article_color;
-  width: 81%;
+  width: 76%;
 }
 
 .list__item_sub_border_how-to {
   padding-left: 0.7em;
   display: inline-block;
   border-left: 1px solid $list__item_border_how-to_color;
-  width: 81%;
+  width: 76%;
 }
 
 .list__item_sub_border_posts {
   padding-left: 0.7em;
   display: inline-block;
   border-left: 1px solid $list__item_border_posts_color;
-  width: 81%;
+  width: 76%;
 }
 
 .list__item_sub_border_category {
   padding-left: 0.7em;
   display: inline-block;
   border-left: 1px solid $list__item_border_category_color;
-  width: 81%;
+  width: 76%;
 }
 
 .list__item_sub_border_projects {
   padding-left: 0.7em;
   display: inline-block;
   border-left: 1px solid $list__item_border_projects_color;
-  width: 81%;
+  width: 76%;
 }
 
 .author_icon_page_meta {

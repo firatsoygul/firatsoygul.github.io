@@ -30,26 +30,23 @@ Bu sayfada **Setup Instructions**, **Message Attachments** ve **Integration Sett
 
 ### Setup Instructions
 
- Bu başlık altında Incoming Webhooks URL'si ve genel bir mesaj yapısının nasıl olması gerektiğine dair bazı bilgiler ve örnekler verilmiş. Mesajınıza bağlantı içeren metinler eklemek, gönderen adı veya iconunu değiştirmek için gerekli işlemler örneklerle gösterilmiş. Ve Curl kullanılarak örnek bir `POST` isteği komut yapısı verilmiş. 
- 
-### Message Attachments 
+ Bu başlık altında Incoming Webhooks URL'si ve genel bir mesaj yapısının nasıl olması gerektiğine dair bazı bilgiler ve örnekler verilmiş. Mesajınıza bağlantı içeren metinler eklemek, gönderen adı veya iconunu değiştirmek için gerekli işlemler örneklerle gösterilmiş. Ve Curl kullanılarak örnek bir `POST` isteği komut yapısı verilmiş.
 
-Bir önceki adımda not olarak belirttiğim zengin formatlı mesaj içeriklerinin nasıl oluşturulacağı hakkında bilgiler bu başlık altında bulunuyor. 
- 
-### Integration Settings 
- 
+### Message Attachments
+
+Bir önceki adımda not olarak belirttiğim zengin formatlı mesaj içeriklerinin nasıl oluşturulacağı hakkında bilgiler bu başlık altında bulunuyor.
+
+### Integration Settings
+
 Bu başlık altında ise ön tanımlı parametrelerimizi belirleyeceğimiz alanlar var.
 
 * **Post to Channel** alanında, bir önceki adımda belirlediğimiz standart kanalımız görünüyor. Bu alanı kullanarak kanalı değiştirebiliyoruz.
 * **Webhook URL** alanında görülen linki bir yere yedekleyelim. İlerleyen aşamalarda bu linke oluşturduğumuz mesaj bloklarını göndereceğiz.
 * **Descriptive Label** alanı, oluşturulan çok sayıda Webhook arasından istediklerimizi daha kolay ayırt edebilmemiz için kullanılan etiketlerin girildiği alan. İsteğe bağlı olduğu için boş bırakabilirsiniz.
 * **Customize Name** alanına, mesajımızın standart gönderen ismini giriyoruz. Eğer gönderilen mesajda herhangi bir kullanıcı adı belirtilmezse mesajımız bu isimle gönderilecek.
-* **Customize Icon** alanında, mesajımızın solunda beliren icon seçilebiliyor. Bu alanda ister Slack içinde kullanılan iconlardan birini seçebilir, isterseniz de başka bir görüntü dosyası yükleyebilirsiniz. Bu bilgi de yine ön tanımlı olduğu için uygulama içinde göndereceğimiz icon bilgisi bu bilginin yerine geçecek. 
+* **Customize Icon** alanında, mesajımızın solunda beliren icon seçilebiliyor. Bu alanda ister Slack içinde kullanılan iconlardan birini seçebilir, isterseniz de başka bir görüntü dosyası yükleyebilirsiniz. Bu bilgi de yine ön tanımlı olduğu için uygulama içinde göndereceğimiz icon bilgisi bu bilginin yerine geçecek.
 * **Preview Message** alanında mevcut parametrelerle mesajınızın Slack üzerinde nasıl görüntüleneceğine dair örnek bir görüntü verilmiş.
 
 Parametreleri ayarladıktan sonra [**Save Setting**](#null){: .btn .btn--success .btn--small} butonu ile kaydedelim.
 
 Artık projemiz üzerinde kullanabileceğimiz bir Incoming Webhooks entegrasyonumuz var ve bu entegrasyonda oluşturulan bağlantıya mesaj bloğumuzu göndererek Slack üzerinde yayınlanmasını sağlayabiliriz.
-
-
-

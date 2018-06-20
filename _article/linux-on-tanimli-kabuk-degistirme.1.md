@@ -14,9 +14,12 @@ tags:
   - chsh
   - usermod
 header:
-  teaser: "/assets/images/unsplash-gallery-image-2.jpg"
+  teaser: "/assets/images/article/linux-shell-header-2.png"
 toc: true
 toc_sticky: true
+author_profile: false
+sidebar: false
+layout: single-no-sidebar
 ---
 
 Linux'ta bir kullanıcı oluşturulduğunda, o kullanıcıya bir kabuk tanımlanır. Sistem yöneticisi, kullanıcı için varsayılan bir kabuk belirlemiş de olabilir. Kullanıcı daha sonra, kendisine tanımlanmış ön tanımlı kabuğunu geçersiz kılarak başka bir kabuk çalıştırmayı seçebilir.
@@ -31,7 +34,7 @@ Kullanıcı, kabuğu değiştirmeden önce mevcut kabuğun ne olduğunu ve deği
 
 ## MEVCUT KABUĞU ÖĞRENME
 
-Linux sistemlerde sıkça kullanılan bazı değerler sistem değişkeni olarak adlandırılan yapılarda barındırılır. Ön tanımlı bir çok değer, sistem açılışında bu değişkenlere aktarılır ve sistemin çalıştığı süre içinde buraya başvuran herhangi bir işlem tarafından kullanılabilir. İhtiyacınız olan bilginin tutulduğu sistem değişkeninin içeriğini ekrana yazdırarak, sisteminizdeki ön tanımlı değerini görüntüleyebilirsiniz. Değişkenleri ekrana yazdırmak için `echo` komutunu kullanabilirsiniz.
+Linux sistemlerde sıkça kullanılan bazı değerler, sistem değişkeni olarak adlandırılan yapılarda barındırılır. Ön tanımlı bir çok değer, sistem açılışında bu değişkenlere aktarılır ve sistemin çalıştığı süre içinde buraya başvuran herhangi bir işlem tarafından kullanılabilir. İhtiyacınız olan bilginin tutulduğu sistem değişkeninin içeriğini ekrana yazdırarak, sisteminizdeki ön tanımlı değerini görüntüleyebilirsiniz. Değişkenleri ekrana yazdırmak için `echo` komutunu kullanabilirsiniz.
 
 ### `$SHELL` Sistem Değişkeni
 
@@ -41,6 +44,8 @@ Sisteminizde ön tanımlı olarak belirlenmiş kabuğun çalıştırılabilir do
 $ echo $SHELL
 /bin/bash
 ```
+
+Yukarıdaki örnekte, sistemde ön tanımlı olarak ayarlanmış olan Bash kabuğuna ait çalıştırılabilir dosyasının, kök dizinde bulunan `/bin` dizini içinde olduğu görülmektedir.
 
 ### `$0` Bağımsız Değişkeni
 
@@ -148,13 +153,13 @@ firat:x:1000:1000:Firat S.,,,:/home/firat:/usr/bin/fish
 usbmux:x:107:46:usbmux daemon,,,:/var/lib/usbmux:/bin/false
 ```
 
-Görüldüğü gibi, firat kullanıcısının bulunduğu satırda en son sırada ön tanımlı kabuk uygulamasının dosya yolu bulunuyor. Herhangi bir metin editörüyle bu dosyayı açarak, kullanıcının bulunduğu satırdaki kabuk bilgisini değiştirdiğinizde ve sistemi yeniden başlattığınızda ön tanımlı kabuğu değiştirmiş olursunuz. `/etc/passwd` dosyası her kullanıcı tarafından görüntülenebilir ancak düzenlemek için yönetici hakları gerektirir. Bu nedenle dosyayı yönetici hakları ile açmamız gerekiyor. Bu işlemi `sudo` komutu ile yapabilirsiniz.
+Görüldüğü gibi, firat kullanıcısının bulunduğu satırda en son sırada ön tanımlı kabuk uygulamasının dosya yolu bulunuyor. Herhangi bir metin editörüyle bu dosyayı açarak, kullanıcının bulunduğu satırdaki kabuk bilgisini değiştirdiğinizde ve sistemi yeniden başlattığınızda ön tanımlı kabuğu değiştirmiş olursunuz. `/etc/passwd` dosyası her kullanıcı tarafından görüntülenebilir ancak düzenlemek için yönetici hakları gerektirir. Bu nedenle dosyayı yönetici hakları ile açmanız gerekiyor. Bu işlemi `sudo` komutu ile yapabilirsiniz.
 
 ```sh
 sudo gedit /etc/passwd
 ```
 
-Bu komut ile `passwd` dosyası yönetici haklarıyla açılır ve bütün içeriğinin değiştirilip kaydedilmesine izin verilir. Kullanıcı adınızın bulunduğu satırın en sonunda yer alan kabuk dizin yolunu  değiştirmeniz gerekiyor. Tabi değiştirmek istediğiniz kabuğun yüklü olduğu dizini de biliyor olmalısınız. Bu bilgiyi, **öğrenme** başlığı altında anlatılan `cat /etc/shells` ve `whereis <kabukadı>` komutları sayesinde öğrenebilirsiniz.
+Bu komut ile `passwd` dosyası yönetici haklarıyla açılır ve bütün içeriğinin değiştirilip kaydedilmesine izin verilir. Kullanıcı adınızın bulunduğu satırın en sonunda yer alan kabuk dizin yolunu  değiştirmeniz gerekiyor. Tabi değiştirmek istediğiniz kabuğun yüklü olduğu dizini de biliyor olmalısınız. Bu bilgiyi, [**mevcut kabuğu öğrenme**](#mevcut-kabuğu-öğrenme) başlığı altında anlatılan `cat /etc/shells` ve `whereis <kabukadı>` komutları sayesinde öğrenebilirsiniz.
 
 Diyelim ki `firat` kullanıcısının giriş kabuğunu bash olarak değiştireceğiz. Yukarıda `firat` kullanıcısının yazılı olduğu satırın sonunda yer alan kabuk dosya yolunu, aşağıdaki gibi değiştirmemiz gerekiyor.
 
@@ -215,7 +220,7 @@ Kabuk programları başlatıldığında, dahil olduğu kategorilere göre yürü
 
 <div class="notice"> {{ notice-text | markdownify }} </div>
 
-Yapılandırma dosyaları içinden rc dosyalarını kullanmanız daha yerinde olacaktır. Çünkü dosyaları **etkileşimli**, **etkileşimsiz** ve **giriş olan**, **giriş olmayan** kabuklar tarafından okunur. Hedef kabuk programınıza bağlı olarak, **bash** kabuğu kullanacaksanız `~/.bashrc` dosyasını, **csh** kabuğunu kullanacaksanız `~/.cshrc` dosyasını kullanmanız gerekir. Diğer kabukların kullandığı yapılandırma dosyalarını, [**'bu tablodan'**](https://www.wikiwand.com/en/Unix_shell#/Configuration%20files) inceleyebilirsiniz.
+Yapılandırma dosyaları içinden rc dosyalarını kullanmanız daha yerinde olacaktır. Çünkü yapılandırma dosyaları **etkileşimli**, **etkileşimsiz** ve **giriş olan**, **giriş olmayan** kabuklar tarafından okunur. Hedef kabuk programınıza bağlı olarak, **bash** kabuğu kullanacaksanız `~/.bashrc` dosyasını, **csh** kabuğunu kullanacaksanız `~/.cshrc` dosyasını kullanmanız gerekir. Diğer kabukların kullandığı yapılandırma dosyalarını, [**bu tablodan**](https://www.wikiwand.com/en/Unix_shell#/Configuration%20files) inceleyebilirsiniz.
 
 Diyelim ki mevcut kabuğunuz bash ve siz fish kabuğunu başlatmak istiyorsunuz. O halde `~/.bashrc` dosyasını açarak aşağıdaki komutları eklemeniz gerekiyor.
 

@@ -18,6 +18,11 @@
     {% comment %} <!-- Header teaser--> {% endcomment %}
     {% if include.item_teaser == "yes" and teaser %}
       <div class="archive__item-teaser">
+        {% if post.link %}
+          <a href="{{ post.link }}"></a> <a href="{{ post.url | relative_url }}" rel="permalink">
+        {% else %}
+          <a href="{{ post.url | relative_url }}" rel="permalink">
+        {% endif %}
         <img src=
           {% if teaser contains "://" %}
             "{{ teaser }}"
@@ -25,6 +30,7 @@
             "{{ teaser | relative_url }}"
           {% endif %}
           alt="">
+          </a>
       </div>
     {% endif %}
 

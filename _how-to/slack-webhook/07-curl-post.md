@@ -30,10 +30,9 @@ $ curl --request POST
 
 Ancak komut bu şekilde çalışmayacaktır. Curl, URL'in belirtilmediğine dair bir hata mesajı döndürür. Ayrıca mesaj verimizi de eklemeliyiz.
 
-
 ### -H veya - -header
 
-POST ile veri gönderirken kullanılabilen iki format var. 
+POST ile veri gönderirken kullanılabilen iki format var.
 
 * `application/json`
 * `application/x-www-form-urlencoded`
@@ -52,33 +51,32 @@ curl -X POST -H "Content-type: application/x-www-form-urlencoded"
 
 ### -d veya - -data
 
-Göndereceğimiz verileri belirttiğimiz parametredir. 
+Göndereceğimiz verileri belirttiğimiz parametredir.
 
-Sunucuya `POST` ile gönderilen veriler, `HTTP` istek gövdesinde saklanır. Bizim gönderdiğimiz veri ise `JSON` yapısında. Ayrıca mesajınızda daha zengin içerikler sunabilmeniz için, üzerinde `link` ve `button` gibi `HTML` form verilerinin eklenmesi de sağlanmış. Bu tür veriler sunucuya gönderilmeden önce URL kodlaması (yüzde kodlaması) denilen bir yöntemle kodlanıyor. URL kodlaması, bir URL'deki `?`, `/` ve `=` gibi özel karakterleri `%3F`, `%2F` ve `%3D` gibi kodlara dönüştürür. Bu kodlama işlemi belirsizliği ortadan kaldırıyor. 
+Sunucuya `POST` ile gönderilen veriler, `HTTP` istek gövdesinde saklanır. Bizim gönderdiğimiz veri ise `JSON` yapısında. Ayrıca mesajınızda daha zengin içerikler sunabilmeniz için, üzerinde `link` ve `button` gibi `HTML` form verilerinin eklenmesi de sağlanmış. Bu tür veriler sunucuya gönderilmeden önce URL kodlaması (yüzde kodlaması) denilen bir yöntemle kodlanıyor. URL kodlaması, bir URL'deki `?`, `/` ve `=` gibi özel karakterleri `%3F`, `%2F` ve `%3D` gibi kodlara dönüştürür. Bu kodlama işlemi belirsizliği ortadan kaldırıyor.
 
 Bu parametre ile girilen veriler ise kodlanmaz. Eğer verilerimizi göndereceğimiz API, veriyi kodlamamızı zorunlu kılıyorsa, bu parametreye gireceğimiz verinin daha önceden kodlamasının yapılmış olaması gerekiyor. Eğer kodlama gerektirmeyen veya doğrudan `JSON` formatlı verileri göndermek istiyorsak, bu parametre ile kodlamadan gönderebiliyoruz.
 
-Son oluşturduğumuz mesaj bloğumuz aşağıdaki gibiydi. `JSON` yapısını `payload` parametresine eklemiştik. 
+Son oluşturduğumuz mesaj bloğumuz aşağıdaki gibiydi. `JSON` yapısını `payload` parametresine eklemiştik.
 
-
-{% highlight bash %}
+```bash
 payload = {
    "username": "firat",
    "channel": "#tasarım",
    "icon_emoji": ":ghost:",
-   "text":"Bu bir deneme mesajıdır.\nBu cümle ise ikinci satıra yazılır. <https://example.com/|Buraya tıklayın.> "
+   "text":"Bu bir deneme mesajıdır.\nBu cümle ise ikinci satıra yazılır. <https://example.com/|Buraya tıklayın.>"
 }
-{% endhighlight %}
+```
 
 Eğer verimizi `application/json` formatında göndermek isteseydik, `payload` parametresini çıkartmamız, istek yöntemini ve veri formatımızı da aşağıdaki gibi belirtmemiz gerekecekti.
 
 ```bash
-curl -X POST -H "Content-type: application/json" 
+curl -X POST -H "Content-type: application/json"
 --data "{
    "username": "firat",
    "channel": "#tasarım",
    "icon_emoji": ":ghost:",
-   "text":"Bu bir deneme mesajıdır.\nBu cümle ise ikinci satıra yazılır."}"
+   "text":"Bu bir deneme mesajıdır.\nBu cümle ise ikinci satıra yazılır. <https://example.com/|Buraya tıklayın.>"}"
 ```
 
 Ancak biz verimizi daha önce kodlamadığımız ve kodlama işleminin Curl tarafından yapılmasını istediğimiz için, `-d` veya `--data` parametresini kullanmayacağız.  `HTML-form` tipindeki özel karakterleri de taşıyabileceğimiz `application/x-www-form-urlencoded` formatını kullanacağız ve Curl'in `--data-urlencode` parametresini kullanarak, `payload` anahtarına yükleyerek göndereceğiz.
@@ -90,41 +88,40 @@ Eğer URL kodlama işlemini önceden yapmış olsaydık, `--data`, `--data-binar
 `HTML-form` tipinde özel karakter içerme potansiyeli olan verimizi, aşağıdaki gibi `application/x-www-form-urlencoded` formatıyla belirterek oluşturabiliriz.
 
 ```bash
-curl -X POST -H "Content-type: application/x-www-form-urlencoded" 
+curl -X POST -H "Content-type: application/x-www-form-urlencoded"
 --data-urlencode "payload = {
    "username": "firat",
    "channel": "#tasarım",
    "icon_emoji": ":ghost:",
-   "text":"Bu bir deneme mesajıdır.\nBu cümle ise ikinci satıra yazılır." }" 
+   "text":"Bu bir deneme mesajıdır.\nBu cümle ise ikinci satıra yazılır. <https://example.com/|Buraya tıklayın.>" }"
 ```
 
 Görüldüğü gibi `-X` parametresi ile gönderim yöntemini, `-H` parametresi ile de verimizin formatını belirtiyoruz. Eğer herhangi bir veri formatı belirtilmezse Curl veriyi ön tanımlı olarak `application/x-www-form-urlencoded` olarak kabul ediyor. Dolayısıyla, eğer `HTML-form` tipinde karakterlerin bulunduğu bir veri gönderiyorsak, ayrıca bir de `-H` parametresi ile format belirtmemize gerek kalmıyor. Yani komutumuzdan `-H` parametresini ve içerdiği değeri çıkartarak aşağıdaki gibi yazdığımızda da amacımıza ulaşmış oluyoruz.
 
 ```bash
-curl -X POST 
+curl -X POST
 --data-urlencode "payload = {
    "username": "firat",
    "channel": "#tasarım",
    "icon_emoji": ":ghost:",
-   "text":"Bu bir deneme mesajıdır.\nBu cümle ise ikinci satıra yazılır." }" 
+   "text":"Bu bir deneme mesajıdır.\nBu cümle ise ikinci satıra yazılır. <https://example.com/|Buraya tıklayın.>" }"
 ```
 
 **Öneri:** Slack, yukarıda bahsedilen iki formatı da kabul ediyor ve ikisi ile de nasıl gönderim yapılabileceğine dair bilgileri [sayfalarında bulabilirsiniz](https://api.slack.com/incoming-webhooks). Fakat amacınız komut satırını kullanarak gönderim yapmaksa, ek URL kodlaması gerektirmeyen ve daha kısa olan ikinci yöntemi seçmemiz daha mantıklı olacaktır.
 {: .notice}
- 
-Son parametre olarak da, daha önce yedeklediğimiz **Webhook Url**imizi Curl aracına giriyoruz. 
+
+Son parametre olarak da, daha önce yedeklediğimiz **Webhook Url** değerimizi Curl aracına giriyoruz.
 
 Bütün bu işlemlerden sonra kod yapımızın son halini aşağıda görebilirsiniz.
 
 ```bash
-curl -X POST 
+curl -X POST
 --data-urlencode "payload = {
    "username": "firat",
    "channel": "#tasarım",
    "icon_emoji": ":ghost:",
-   "text":"Bu bir deneme mesajıdır.\nBu cümle ise ikinci satıra yazılır." }" 
+   "text":"Bu bir deneme mesajıdır.\nBu cümle ise ikinci satıra yazılır. <https://example.com/|Buraya tıklayın.>" }"
 https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX
 ```
 
-Mesaj gönderme işlemini komut satırından yapacağımız için kod üzerinde karışıklıkları önlemek adına yapmamız gereken bazı eklemeler var. Bunları [**Komut Satırından Mesaj Gönderme**](/how-to/slack-webhook/komut-satirindan-mesaj-gonderme/) konusu altında bulabilirsiniz.
-
+Mesaj gönderme işlemini komut satırından yapacağımız için kod üzerinde karışıklıkları önlemek adına yapmamız gereken bazı eklemeler var. Bunları bir sonraki  [**Komut Satırından Mesaj Gönderme**](/how-to/slack-webhook/komut-satirindan-mesaj-gonderme/) konusu altında bulabilirsiniz.

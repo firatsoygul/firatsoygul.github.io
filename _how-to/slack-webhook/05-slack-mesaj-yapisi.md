@@ -18,7 +18,7 @@ Göndereceğimiz mesajların, bir `JSON` yapısı içinde, anahtar / değer çif
 **Not:** Mesaj içinde bir alt satıra geçiş yapmak için `\n` karakterlerini kullanıyoruz. `\n` karakterinden sonra yazılan mesaj metni, bir alt satırdan başlatılarak yazdırılır.
 {: .notice--info}
 
-Mesajımızı bu haliyle gönderdiğimizde mesaj iletisi gönderilir ancak gönderen ismi ve icon belirtmediğimiz için, bu bilgiler Webhook parametrelerini oluşturduğumuz sırada girdiğimiz ön tanımlı değerlerden alınır. Bu yapıya farklı parametreler ekleyerek, ön tanımlı değerler yerine bizim gönderdiğimiz değerlerin görünmesini sağlayabiliriz.
+Mesajımızı bu haliyle gönderdiğimizde mesaj iletisi gönderilir ancak gönderen ismi ve icon belirtmediğimiz için, bu bilgiler bir önceki konuda Webhook parametrelerini oluşturduğumuz sırada girdiğimiz ön tanımlı değerlerden alınır. Bu yapıya farklı parametreler ekleyerek, ön tanımlı değerler yerine bizim gönderdiğimiz değerlerin görünmesini sağlayabiliriz.
 
 ### Gönderen İsmi
 
@@ -33,7 +33,7 @@ Mesajımızın gönderen adını değiştirmek için `username` anahtarını kul
 
 ### Kanal İsmi / Alıcı Adı
 
-Standart olarak bir kanal belirlemiştik. Farklı bir kanala göndermek istediğimizde `channel` anahtarını kullanıyoruz. Kanal ismini değer olarak girerken ismin başına `#` (diyez) karakterini girmemiz gerekiyor. Mesajımızı bir kanal yerine, projemize dahil edilmiş bir kullanıcıya özel mesaj olarak göndermek için, kullanıcı adının başına `@` (kuruklu a / et) karakterini koyabiliriz. (Örn. `"channel": "@firat"`)
+Standart olarak bir kanal belirlemiştik. Mesajımızı farklı bir kanala göndermek istediğimizde `channel` anahtarını kullanıyoruz. Kanal ismini değer olarak girerken ismin başına `#` (diyez) karakterini girmemiz gerekiyor. Mesajımızı bir kanal yerine, projemize dahil edilmiş bir kullanıcıya özel mesaj olarak göndermek için, kullanıcı adının başına `@` (kuyruklu a) karakterini koyabiliriz. (Örn. `"channel": "@firat"`)
 
 ```json
 {
@@ -43,7 +43,7 @@ Standart olarak bir kanal belirlemiştik. Farklı bir kanala göndermek istediğ
 }
 ```
 
-**Uyarı:** Webhook entegrasyonunda tanımladığınız ön tanımlı kanal ya da kullanıcı adını, `channel` anahtarına değer olarak yazdığınızda, mesajlarınız `@slackbot` kullanıcısına gönderiliyor. Bu durumu aşmak için, ön tanımlı kanal / kişiye mesaj gönderirken, `channel` anahtarını `JSON` yapısına eklemeyebilir veya değerini boş bırakabilirsiniz (Örn. `"channel": ""`). Bu şekilde gönderilen mesajlar ön tanımlı kanala / kişiye gönderilir.
+**Uyarı:** Webhook entegrasyonunda belirlediğimiz ön tanımlı kanal ya da kullanıcı adını, `channel` anahtarına değer olarak yazdığınızda, mesajlarınız `@slackbot` kullanıcısına gönderiliyor. Bu durumu aşmak için, ön tanımlı kanal / kişiye mesaj gönderirken, `channel` anahtarını `JSON` yapısına eklemeyebilir veya değerini boş bırakabilirsiniz (Örn. `"channel": ""`). Bu şekilde gönderilen mesajlar ön tanımlı kanala / kişiye gönderilir.
 {: .notice--warning}
 
 ### Mesaj Iconu veya Görüntüsü
@@ -61,7 +61,7 @@ Her gönderilen mesajın solunda kullanıcıya ait bir görüntü veya icon bulu
 
 ### Bağlantı (Link) Oluşturma
 
-Mesaj metni içinde bir bağlantıya köprü oluşturabilmek için `<>` karakterleri içine bağlantıyı eklememiz gerekiyor. Mesaj içinde bağlantı yerine köprülenmiş bir metin göstermek istiyorsak, bağlantının hemen bitimine `|` (pipe) karakterini ekleyip devamında köprü oluşturacağımız metnimizi ekliyoruz.
+Mesaj metni içinde bir bağlantıya köprü oluşturabilmek için `< >` karakterleri içine bağlantıyı eklememiz gerekiyor. Mesaj içinde bağlantı yerine köprülenmiş bir metin göstermek istiyorsak, bağlantının hemen bitimine `|` (pipe) karakterini ekleyip devamında köprü oluşturacağımız metnimizi ekliyoruz.
 
 ```json
 {
@@ -77,9 +77,16 @@ Mesaj metni içinde bir bağlantıya köprü oluşturabilmek için `<>` karakter
 ![image-center](/assets/images/how-to/slack-webhook/5-slack-mesaj-yapisi-baglanti.png){: .align-center}
 {: .notice--primary}
 
+Görüldüğü gibi `< >` karakterlerini mesaj metnimizin içine yazdık. Ancak görüntülenen mesajda bu karakterler gizlendi. Bu karakterleri birer operatör olarak değil de, mesaj metnimizin bir parçası olarak görüntülemek istediğimizde, URL kodlaması denilen yöntemle kodlanmış halini göndermemiz gerekiyor. Slack mesajlarında bu işlemi yalnızca 3 karakter için yapmamız gerektiği belirtilmiş.
+
+- `&` Ve anlamına gelen bu karakter yerine `&amp;`
+- `<` Küçüktür karakteri yerine `&lt;`
+- `>` Büyüktür karakteri yerine `&gt;`
+
 Mesaj içeriğinde farklı görünümler oluşturmak için [bu sayfaya](https://api.slack.com/docs/message-formatting) göz atabilirsiniz.
 
-Oluşturduğunuz görünümleri [bu sayfada](https://api.slack.com/docs/messages/builder) test edebilirsiniz.
+**Bilgi:** Oluşturduğunuz görünümleri [bu sayfada](https://api.slack.com/docs/messages/builder) test edebilirsiniz.
+{: .notice--success}
 
 Son oluşturduğumuz haliyle bu yapıyı bir `POST` isteğinin gövdesine ekleyerek gönderebiliriz. İkinci bir yöntem ise bu `JSON` yapısını `POST` istek gövdesinde `payload` parametresine ekleyerek göndermek. Sonraki adımlarda, ikinci yöntemi kullanarak gönderme işlemini yapacağız. Yani elimizdeki verinin son hali aşağıdaki gibi olmalı.
 

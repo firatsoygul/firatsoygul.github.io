@@ -37,7 +37,7 @@ main:
 
 # slack-webhook sidebar
 slack-webhook:
-  - title: Başlangıç
+  - title: Giriş
     children:
       - title: "Açıklama"
         url: /how-to/slack-webhook/baslangic/
