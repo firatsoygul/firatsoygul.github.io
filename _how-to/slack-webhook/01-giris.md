@@ -13,7 +13,7 @@ tags:
   - Kabuk programlama
   - Kabuk betiği
 header:
-  teaser: "/assets/images/how-to/slack-webhook/slack-header.png"
+  teaser: "/assets/images/how-to/slack-webhook/slack-header.jpg"
 ---
 
 Proje geliştirirken, ekip içindeki iletişimi kolaylaştıran platformlardan biri de Slack. Slack üzerinde oluşturduğumuz bir proje alanı sayesinde, ekip üyeleriyle iletişim kurabiliyor ve gerekli etkileşimi sağlayabiliyoruz. Slack platformunu kullanabileceğiniz uygulamalar zaten kendileri tarafından sağlanmış durumda. Mobil tarafında Android ve IOS, masaüstü tarafında ise Linux, Windows ve Mac uygulamalarını sitelerinden indirip kullanabiliyorsunuz. Eğer gömülü sistem alanında uğraşıyorsanız, bu uygulamaların kurulamadığı ortamlardan da Slack platformuna ulaşmak isteyebilirsiniz. Ya da IOT donanımlarınızdaki hareketlerin takibi için Slack platformunu kullanmak isteyebilirsiniz. Örneğin iş yerinizdeki sıcaklık sensörlerinin bağlı olduğu bir IOT donanımdan, belli bir ısının alt ve üst seviyelerinde size mesaj göndermesini isteyebilirsiniz. İşte bu gibi durumlarda, Linux çekirdeği üzerinde çalışan kabuğu programlayıp, belirli görevlerde Slack projenizdeki bir kanala ya da kullanıcıya mesaj olarak bilgi göndermesini sağlayabilirsiniz.

@@ -246,7 +246,7 @@ defaults:
     values:
       layout: single
       author: Fırat Soygül
-      author_profile: true
+      author_profile: false
       share: true
       comments: false
   # _article

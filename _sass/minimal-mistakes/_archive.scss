@@ -214,7 +214,7 @@ $list__item_border_projects_color: #79b13a !important;
     
     @include breakpoint($medium) {
       // height: 4.6em !important;
-      width: 8.8em !important;
+      width: 10.5em !important;
     }
   }
 }
@@ -279,35 +279,35 @@ $list__item_border_projects_color: #79b13a !important;
   padding-left: 0.7em;
   display: inline-block;
   border-left: 1px solid $list__item_border_article_color;
-  width: 76%;
+  width: 72%;
 }
 
 .list__item_sub_border_how-to {
   padding-left: 0.7em;
   display: inline-block;
   border-left: 1px solid $list__item_border_how-to_color;
-  width: 76%;
+  width: 72%;
 }
 
 .list__item_sub_border_posts {
   padding-left: 0.7em;
   display: inline-block;
   border-left: 1px solid $list__item_border_posts_color;
-  width: 76%;
+  width: 72%;
 }
 
 .list__item_sub_border_category {
   padding-left: 0.7em;
   display: inline-block;
   border-left: 1px solid $list__item_border_category_color;
-  width: 76%;
+  width: 72%;
 }
 
 .list__item_sub_border_projects {
   padding-left: 0.7em;
   display: inline-block;
   border-left: 1px solid $list__item_border_projects_color;
-  width: 76%;
+  width: 72%;
 }
 
 .author_icon_page_meta {

@@ -14,7 +14,9 @@ tags:
   - chsh
   - usermod
 header:
-  teaser: "/assets/images/article/linux-shell-header-2.png"
+  teaser: "/assets/images/article/linux-shell-header.jpg"
+  overlay_image: "/assets/images/article/linux-shell-header.jpg"
+  overlay_filter: rgba(121,189,198, 0.95)
 toc: true
 toc_sticky: true
 author_profile: false
