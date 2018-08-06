@@ -15,6 +15,8 @@ tags:
   - Medya Oynatıcı
 header:
   teaser: "/assets/images/projects/gzyi-medya-oynatici/gzyi-medya-oynatici-header.jpg"
+  image: "/assets/images/projects/gzyi-medya-oynatici/gzyi-medya-oynatici-header.jpg"
+  caption: "fs."
 gallery-gzyi-medya-oynatici:
   - url: /assets/images/projects/gzyi-medya-oynatici/Listeler.png
     image_path: /assets/images/projects/gzyi-medya-oynatici/Listeler.png

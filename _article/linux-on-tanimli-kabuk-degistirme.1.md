@@ -17,6 +17,7 @@ header:
   teaser: "/assets/images/article/linux-shell-header.jpg"
   overlay_image: "/assets/images/article/linux-shell-header.jpg"
   overlay_filter: rgba(121,189,198, 0.95)
+  show_overlay_excerpt: false
 toc: true
 toc_sticky: true
 author_profile: false

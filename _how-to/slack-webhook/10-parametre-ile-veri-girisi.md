@@ -13,7 +13,7 @@ tags:
   - read komutu
 ---
 
-Çalışmamızın bir önceki bölümünde mesaj metni, kanal ismi ve diğer gerekli verileri doğrudan komut içine yazmış ve komut satırında çalıştırmıştık. Bu defa komutlarımızı bir dosya içine yerleştirdik. Mesaj metni gibi gerekli verileri ise komut içine gömmek yerine, programı her çalıştırdığımızda dışarıdan girebilmemiz gerekiyor. Bunun için kullanabileceğimiz yöntemlere bir bakalım.
+Çalışmamızın bir önceki bölümünde mesaj metni, kanal ismi ve diğer gerekli verileri doğrudan komut içine yazmış ve komut satırında çalıştırmıştık. Bu defa komutlarımızı bir dosya içine yerleştirdik. Mesaj metni gibi gerekli verileri ise komut içine gömmek yerine, programı her çalıştırdığımızda dışarıdan girebilmemiz gerekiyor. Komut dosyası her çağrıldığında, belirtilen verileri alacak şekilde hazırlanmalı. Böylece kabuk betiğimiz giriş parametrelerine bağlı olarak farklı bir işlev gerçekleştirebilir. Bunun için kullanabileceğimiz yöntemlere bir bakalım.
 
 ## read Komutu
 
@@ -34,11 +34,11 @@ $ ./read_deneme.sh
 Hoş Geldiniz Fırat Soygül
 ```
 
-Görüldüğü gibi dosyayı çalıştırdığımızda ikinci satırda kullanıcıdan giriş yapması beklenir, giriş yapıldıktan sonra da bir sonraki komut çalıştırılır. Aslında göndereceğimiz verileri kullanıcıdan bu şekilde de alabiliriz. Ancak bizim yapmak istediğimiz bu çalışmada mesaj verilerini sadece kullanıcıların değil, diğer uygulamaların da girebilmesini istiyoruz. Bu nedenle verileri girmesi için kullanıcıyla etkileşim kuran ve bekleyen `read` komutu yerine başka bir yöntem kullanacağız.
+Görüldüğü gibi dosyayı çalıştırdığımızda ikinci satırda kullanıcıdan giriş yapması beklenir, giriş yapıldıktan sonra da bir sonraki komut çalıştırılır. Aslında göndereceğimiz verileri kullanıcıdan bu şekilde de alabiliriz. Ancak biz bu çalışmada mesaj verilerini sadece kullanıcıların değil, diğer uygulamaların da girebilmesini istiyoruz. Bu nedenle verileri girmesi için kullanıcıyla etkileşim kuran ve bekleyen `read` komutu yerine başka bir yöntem kullanacağız.
 
 ## Konumsal Parametreler
 
-Bu parametreler, kabuk programı çağrılırken oluşturulur. Bir kabuk programını çalıştırırken girdiğiniz komutun yanına yazılan değerler `$0`, `$1`, `$2`, `$3`... isminde geçici değişkenlere atanır. Bu parametreleri, programın çalışma süresi boyunca uygulama içinde çağırabilir ve kullanabilirsiniz. Örnek olarak kd_deneme.sh adında bir dosya oluşturarak aşağıdaki komutları yazıp kaydedilim.
+Bu parametreler, kabuk programı çağrılırken oluşturulur. Bir kabuk programını çalıştırırken girdiğiniz komutun yanına yazılan değerler `$0`, `$1`, `$2`, `$3`... isminde geçici değişkenlere atanır. Bu parametreleri, programın çalışma süresi boyunca uygulama içinde çağırabilir ve kullanabilirsiniz. Örnek olarak kp_deneme.sh adında bir dosya oluşturarak aşağıdaki komutları yazıp kaydedelim.
 
 ```bash
 #!/bin/bash
@@ -52,14 +52,14 @@ echo $4
 Şimdi de oluşturduğumuz bu kabuk betiğini komut satırında çağıralım. Aynı zamanda program ismini yazdıktan hemen sonra, aralarında birer boşluk bırakarak birbirinden farklı bir kaç değer girelim.
 
 ```bash
-kd_deneme.sh bir iki üç "dört ve beş"
+kp_deneme.sh bir iki üç "dört ve beş"
 ```
 
 Bu komut çalıştırıldığında, betik adının hemen ardına yazdığımız veriler sırasıyla, konumsal parametre olarak bazı geçici değişkenlere atanıyor ve kabuk betiği çalıştırılıyor. Bu noktadan itibaren betik içinde bu değişken isimleri çağrılarak içerdikleri değerler kullanılabilir. Örneğimizde bu değişkenlere atanan değerleri, `echo` komutuyla ekrana yazdırıyoruz. Ekran çıktısını aşağıdan görebilirsiniz.
 
 ```bash
-$ ./kd_deneme.sh bir iki üç "dört ve beş"
-./kd_deneme.sh
+$ ./kp_deneme.sh bir iki üç "dört ve beş"
+./kp_deneme.sh
 bir
 iki
 üç
@@ -69,25 +69,25 @@ dört ve beş
 Görüldüğü gibi betik çalıştırılırken komut satırından yazılan veriler, sıralı bir şekilde konumsal parametre olarak atanmış durumda. Ancak `$1` değişkeni girilen ilk parametreyi tutarken, `$0` değişkenine ise çağırdığımız kabuk programının çalıştırıldığı kod bloğu atanmış. Yani komut satırına girdiğimiz bütün değerler, aralarındaki boşluk karakteri ile ayrılarak soldan sağa sıralı olarak konumsal parametre olarak belirlenmiş durumda. Bu durumu altta gösterildiği gibi düşünebiliriz.
 
 ```bash
-kd_deneme.sh bir iki üç "dört ve beş" ....
+kp_deneme.sh bir iki üç "dört ve beş" ....
 ------------ --- --- -- ------------- ----
 $0           $1  $2  $3 $4            ${N}
 ```
 
 Bu yöntemi kullanırken dikkat edilmesi gereken iki önemli kural var.
 
-- Eğer girilen parametre miktarının basamak sayısı tek sayılı haneleri geçerse, parametreyi kullanabilmek için parametre numarasını küme parantezleri `{` `}` içine alarak yazmamız gerekiyor (Örn. `${10}`, `${16}`).
+- Eğer girilen parametre miktarının basamak sayısı tek sayılı haneleri geçerse, komut dosyası içinde parametreyi kullanabilmek için parametre numarasını küme parantezleri `{` `}` içine alarak yazmamız gerekiyor (Örn. `${10}`, `${16}`).
 
-- Veri girişini yaparken, aradaki boşlukların ayırıcı özelliklerini iptal etmek ve birden fazla kelimeyi tek bir parametreye atamak için, veriyi çift tırnak `"` karakterleri arasına yazmalısınız.
+- Veri girişini yaparken, aradaki boşlukların ayırıcı özelliklerini iptal etmek ve birden fazla kelimeyi tek bir parametreye atamak için, veriyi iki çift tırnak `"` `"` karakterinin arasına yazmalısınız.
 
-Verilerimizi bu şekilde betik içine çekebiliriz ancak hala kullanım bakımından bir zorluk söz konusu. Girişini yapmamız gereken mesaj metni, kullanıcı ismi gibi birden fazla değer var ve girdiğimiz verilerin hangisinin hangi veri türüne karşılık geldiğini bu şekilde anlamak biraz zor. 
+Verilerimizi bu şekilde betik içine çekebiliriz ancak hala okunabilirlik bakımından bir zorluk söz konusu. Girişini yapmamız gereken mesaj metni, kullanıcı ismi gibi birden fazla değer var ve girdiğimiz verilerin hangisinin hangi veri türüne karşılık geldiğini bu şekilde anlamak biraz zor. 
 
-CURL kullanımında hatırlarsanız, CURL aracının kendi adını girdikten sonra sırasıyla parametrelerimizi ve atadığımız değerleri arka arkaya giriyorduk.
+CURL kullanımında hatırlarsanız, CURL aracının kendi adını girdikten sonra sırasıyla önce parametrenin türünü belirtiyor sonra da içereceği değeri arka arkaya giriyorduk.
 
 ```bash
 curl -X POST -H "Content-type: application/json"
 ```
 
-Bu giriş yönteminde uygulamanın adından (`curl`) sonra gelen `-X` ifadesi, CURL aracına göndereceğimiz konumsal parametrenin anahtarı olarak kullanılıyordu. Anahtardan sonra gelen `POST` ise parametreye atadığımız değer olarak giriliyor. Bir sonraki `-H` anahtarı da yine bir başka parametre anahtarı ve `Content-type: application/json` da bu parametreye ait değer olarak giriliyor. Yani bir verinin girişini yaparken öncelikle o verinin türünü `-` karakteri ile kısaca tanıtıyor, hemen sonrasında ise o türe ait değeri giriyoruz. Böylece uygulama kendisine gelen verilerin türlerini yaptığımız bu tanımlamadan anlayarak gerekli atamaları yapıyor.
+Bu giriş yönteminde uygulamanın adından (`curl`) sonra gelen `-X` ifadesi, CURL aracına göndereceğimiz konumsal parametrenin türünü belirten bir anahtar olarak kullanılıyordu. Anahtardan sonra gelen `POST` ise parametreye atadığımız değer olarak giriliyor. Bir sonraki `-H` anahtarı da yine bir başka parametre anahtarı ve `Content-type: application/json` da bu parametreye ait değer olarak giriliyor. Yani bir verinin girişini yaparken öncelikle o parametrenin türünü `-` karakteri ile kısaca tanıtıyor, hemen sonrasında ise o türe ait değeri giriyoruz. Böylece uygulama kendisine gelen verilerin türlerini yaptığımız bu tanımlamadan anlayarak gerekli atamaları yapıyor. Ayrıca kullanıcı da veri girişini daha okunabilir bir düzende yapmış oluyor.
 
 Buna benzer bir parametre girişini kendi yazdığınız bir fonksiyonla da yapabilirsiniz elbet. Ancak hali hazırda Bash kabuğunda bu işi yapmak için geliştirilmiş bir fonksiyon zaten mevcut. `getopts` adı verilen bu fonksiyonu [bir sonraki sayfada](/how-to/slack-webhook/getopts-fonksiyonu/) inceleyebilirsiniz.
