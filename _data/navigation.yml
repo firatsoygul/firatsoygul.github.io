@@ -70,20 +70,20 @@ slack-webhook:
       - title: "getopts Fonksiyonu"
         url: /how-to/slack-webhook/getopts-fonksiyonu/
       - title: "help Fonksiyonu"
-        url: /docs/stylesheets/
+        url: #
       - title: "Curl Dahil Etme"
-        url: /docs/stylesheets/
+        url: #
       - title: "Mesaj Gönderme"
-        url: /docs/stylesheets/
+        url: #
   - title: Kabuk Programlama ile YAD GUI
     children:
       - title: "Açıklama"
-        url: /docs/stylesheets/
+        url: #
       - title: "YAD GUI Script"
-        url: /docs/stylesheets/
+        url: #
       - title: "YAD Dahil Etme"
-        url: /docs/stylesheets/
+        url: #
       - title: "Curl Dahil Etme"
-        url: /docs/stylesheets/
+        url: #
       - title: "Mesaj Gönderme"
-        url: /docs/stylesheets/
+        url: #
