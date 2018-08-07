@@ -68,7 +68,7 @@ slack-webhook:
       - title: "Parametre İle Veri Girişi"
         url: /how-to/slack-webhook/parametre-ile-veri-girisi/
       - title: "getopts Fonksiyonu"
-        url: /docs/stylesheets/
+        url: /how-to/slack-webhook/getopts-fonksiyonu/
       - title: "help Fonksiyonu"
         url: /docs/stylesheets/
       - title: "Curl Dahil Etme"
