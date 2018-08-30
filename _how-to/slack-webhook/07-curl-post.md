@@ -32,12 +32,12 @@ Ancak komut bu şekilde çalışmayacaktır. Curl, URL'in belirtilmediğine dair
 
 ### -H veya - -header
 
-POST ile veri gönderirken kullanılabilen iki format var.
+POST ile veri gönderirken kullanacağımız içerik türünü bu parametreler ile belirliyoruz. Slack platformunun desteklediği iki içerik türü var.
 
 * `application/json`
 * `application/x-www-form-urlencoded`
 
-Veriyi gönderirken veri formatımızı `-H` veya `--header` parametrelerini kullanarak belirtmemiz gerekiyor. Bu parametrelerden birini ve hemen ardından formatımızı yazarak Curl aracına aşağıdaki gibi tanımlıyoruz.
+Bu türlerden birini, veriyi gönderirken `-H` veya `--header` parametrelerini kullanarak belirtmemiz gerekiyor. Bu parametrelerden birini ve hemen ardından formatımızı yazarak Curl aracına aşağıdaki gibi tanımlıyoruz.
 
 ```bash
 curl -X POST -H "Content-type: application/json"
